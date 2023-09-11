@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_verif4.c                                       :+:      :+:    :+:   */
+/*   path_finding4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlinbourgeois <merlinbourgeois@studen    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:57:46 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/04/07 11:57:52 by merlinbourg      ###   ########.fr       */
+/*   Updated: 2023/09/11 15:36:27 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/pathfinding.h"
 
-int	ft_path_finding_alredy(int y, int x, t_map_corr *chain)
+static int	ft_path_finding_alredy(int y, int x, t_map_corr *chain)
 {
 	t_map_corr	*l;
 
@@ -28,8 +28,10 @@ int	ft_path_finding_alredy(int y, int x, t_map_corr *chain)
 	return (0);
 }
 
-//fonction servant a mettre la cases a 1 si elle as déja été visitée dans la liste chainée
-
+/*
+* fonction servant a mettre la cases a 1
+* si elle as déja été visitée dans la liste chainée
+*/
 t_map_corr	*ft_path_finding_map_suppup(t_map_verif *map, t_map_corr *chain)
 {
 	t_map_corr	*l;
@@ -53,7 +55,6 @@ int	ft_path_finding_map_search_neighbour(t_map_verif *map)
 {
 	int	i;
 
-	//printf("x %d\ny %d\n", map->x, map->y);
 	i = 0;
 	if (map->map_compl[map->y][map->x + 1] != '1')
 		i++;

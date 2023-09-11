@@ -1,80 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_path_finding.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlinbourgeois <merlinbourgeois@studen    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:05:19 by mebourge          #+#    #+#             */
-/*   Updated: 2023/04/08 18:35:10 by merlinbourg      ###   ########.fr       */
+/*   Updated: 2023/09/11 15:30:13 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/pathfinding.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_free_list(t_map_corr *chain)
 {
-	size_t	i;
+	t_map_corr	*e;
+	t_map_corr	*last;
 
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (fd < 0 || !s)
+	if (!chain)
 		return ;
-	write(fd, s, ft_strlen(s));
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	if (dstsize > 0)
+	while (chain->next != NULL)
 	{
-		while (src[i] && i < (dstsize - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = 0;
+		e = chain;
+		last = get_last(chain);
+		while (e->next != last)
+			e = e->next;
+		free(e->next);
+		e->next = NULL;
 	}
-	while (src[i])
-		i++;
-	return (i);
 }
 
-char	*ft_strdup(const char *s)
+t_path_return	*list_to_arrays(t_map_corr *head)
 {
-	int		i;
-	char	*dst;
+	t_path_return	*coord;
+	t_map_corr		*copy;
+	int				nb_co;
+	int				i;
 
-	i = 0;
-	dst = malloc(ft_strlen(s) + 1 * sizeof(char));
-	if (dst == NULL)
-		return (dst);
-	while (s[i] != '\0')
-	{
-		dst[i] = s[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-t_path_return *list_to_arrays(t_map_corr* head)
-{
-	t_path_return *coord;
-	t_map_corr *copy = head;
-	int nb_co;
-	int i;
-
+	copy = head;
 	nb_co = 0;
 	i = 0;
 	coord = malloc(1 * sizeof(t_path_return));
@@ -84,40 +47,44 @@ t_path_return *list_to_arrays(t_map_corr* head)
 		copy = copy->next;
 	}
 	coord->x = malloc(nb_co * sizeof(int));
-	coord->y= malloc(nb_co * sizeof(int));
+	coord->y = malloc(nb_co * sizeof(int));
 	coord->moves = nb_co;
 	copy = head;
 	while (copy != NULL)
 	{
 		coord->x[i] = copy->x;
-		coord->y[i] = copy->y;
+		coord->y[i++] = copy->y;
 		copy = copy->next;
-		i++;
 	}
-	return(coord);
+	return (coord);
 }
 
-char **copyStrings(char** src, int numStrings) 
+char	**copy_strings(char **src, int num_strings)
 {
 	char	**dest;
-	dest = malloc(numStrings * sizeof(char *));
-    for (int i = 0; i < numStrings; i++)
+	int		i;
+
+	dest = malloc(num_strings * sizeof(char *));
+	i = 0;
+	while (i < num_strings)
 	{
 		dest[i] = ft_strdup(src[i]);
-		//printf("dest i : %s\n", dest[i]);
-    }
+		i++;
+	}
 	return (dest);
 }
 
-void printList(t_map_corr* head)
+void	print_list(t_map_corr *head)
 {
-   	t_map_corr* current = head;
-    while (current)
+	t_map_corr	*current;
+
+	current = head;
+	while (current)
 	{
-        printf("x : %d\n", current->x);
+		printf("x : %d\n", current->x);
 		printf("y : %d\n", current->y);
 		printf("\n");
-        current = current->next;
-    }
-    printf("\n");
+		current = current->next;
+	}
+	printf("\n");
 }

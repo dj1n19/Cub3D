@@ -106,37 +106,9 @@ typedef struct	s_s
 }	t_s;
 
 
-/*
-*	structure de gestion du path_finding
-*/
 
-typedef struct s_map_verif
-{
-	int		error;
-	char	*map_path;
-	int		map_x;
-	int		map_y;
-	int		x;
-	int		y;
-	int		out_x;
-	int		out_y;
-	int		dist;
-	int		map_mapleng;
-	int		lower_cost;
-	int		**map_dist;
-	char	**map_compl;
-}	t_map_verif;
 
-/*
-*	liste chainée du path_finding
-*/
 
-typedef struct s_map_corr
-{
-	int					x;
-	int					y;
-	struct s_map_corr	*next;
-}	t_map_corr;
 
 /*
 *	structure de gestion des vecteurs du raycasting

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   path_finding3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlinbourgeois <merlinbourgeois@studen    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:56:25 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/04/11 22:32:40 by merlinbourg      ###   ########.fr       */
+/*   Updated: 2023/09/11 15:32:25 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/pathfinding.h"
 
 t_map_corr	*get_last(t_map_corr *chain)
 {
@@ -42,8 +42,10 @@ t_map_corr	*lstadd_back(t_map_corr *chain, t_map_corr *co)
 	return (chain);
 }
 
-//fonction servant a appliquer l'algorithme de manathan, a trouver le coup le moins cher
-
+/*
+* fonction servant a appliquer l'algorithme de manathan,
+* a trouver le coup le moins cher
+*/
 void	ft_path_finding_map_manathan(t_map_verif *map)
 {
 	int	diff1;
