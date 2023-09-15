@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:05:19 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/11 15:30:13 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/12 16:24:23 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ t_path_return	*list_to_arrays(t_map_corr *head)
 	copy = head;
 	nb_co = 0;
 	i = 0;
-	coord = malloc(1 * sizeof(t_path_return));
+	coord = ft_malloc(1 * sizeof(t_path_return), NULL, MALLOC);
 	while (copy != NULL )
 	{
 		nb_co++;
 		copy = copy->next;
 	}
-	coord->x = malloc(nb_co * sizeof(int));
-	coord->y = malloc(nb_co * sizeof(int));
+	coord->x = ft_malloc(nb_co * sizeof(int), NULL, MALLOC);
+	coord->y = ft_malloc(nb_co * sizeof(int), NULL, MALLOC);
 	coord->moves = nb_co;
 	copy = head;
 	while (copy != NULL)
@@ -64,7 +64,7 @@ char	**copy_strings(char **src, int num_strings)
 	char	**dest;
 	int		i;
 
-	dest = malloc(num_strings * sizeof(char *));
+	dest = ft_malloc(num_strings * sizeof(char *), NULL, MALLOC);
 	i = 0;
 	while (i < num_strings)
 	{

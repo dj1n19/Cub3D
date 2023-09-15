@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:04:09 by mebourge          #+#    #+#             */
-/*   Updated: 2022/10/24 14:04:12 by mebourge         ###   ########.fr       */
+/*   Created: 2022/04/14 23:43:09 by bgenie            #+#    #+#             */
+/*   Updated: 2022/04/22 16:22:25 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+size_t	ft_printstr(char *str)
 {
-	t_list	*l;
-
-	if (!new || !lst)
-		return ;
-	if (!*lst)
+	if (!str)
 	{
-		*lst = new;
-		return ;
+		ft_putstr_fd("(null)", 1);
+		return (6);
 	}
-	l = ft_lstlast(*lst);
-	l->next = new;
+	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
 }

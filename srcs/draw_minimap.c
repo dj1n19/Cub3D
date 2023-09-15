@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:32:03 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/10 16:20:29 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/14 17:07:00 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int point_in_circle(double x, double y, double cx, double cy, double r)
     }
 }
 
-static void	draw_line_minimap(t_s *s, int x0, int y0, int x1, int y1)
+static void	draw_line_minimap(t_data *img, t_mlx *p, int x0, int y0, int x1, int y1)
 {
 	int	dx;
 	int	dy;
@@ -48,7 +48,7 @@ static void	draw_line_minimap(t_s *s, int x0, int y0, int x1, int y1)
 	while (1)
 	{
 		if (x0 >= 0 && x0 < SCREEN_WIDTH && y0 >= 0 && y0 < SCREEN_HEIGHT && point_in_circle(x0, y0, MINIMAP_X, MINIMAP_Y, 150))
-			my_mlx_pixel_put(s->img, x0, y0, s->p->color);
+			my_mlx_pixel_put(img, x0, y0, p->color);
 		if (x0 == x1 && y0 == y1)
 			break ;
 		e2 = 2 *err;
@@ -65,7 +65,36 @@ static void	draw_line_minimap(t_s *s, int x0, int y0, int x1, int y1)
 	}
 }
 
-void	draw_map_2d(t_s *s)
+static void draw_square_minimap(t_data *img, t_mlx *p, int x, int y, int size_x, int size_y)
+{
+    // Vérification que les coordonnées ne débordent pas de l'écran
+    if (x < 0) x = 0;
+    if (y < 0) y = 0;
+    if (x + size_x >= SCREEN_HEIGHT) size_x = SCREEN_HEIGHT - x - 1;
+    if (y + size_y >= SCREEN_WIDTH) size_y = SCREEN_WIDTH - y - 1;
+
+    int i;
+    int j;
+
+    // Boucle pour dessiner chaque pixel du carré
+    i = y;
+    while (i <= y + size_y)
+    {
+        j = x;
+        while (j <= x + size_x)
+        {
+            // Vérification que les coordonnées ne débordent pas de l'écran
+            if (i >= 0 && i < SCREEN_WIDTH && j >= 0 && j < SCREEN_HEIGHT && point_in_circle(i, j, MINIMAP_X, MINIMAP_Y, 150))
+            {
+                my_mlx_pixel_put(img, i, j, p->color);
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
+void	draw_map_2d(t_map *map, t_data *img, t_mlx *p, t_player *player)
 {
 	int	x;
 	int	y;
@@ -80,8 +109,8 @@ void	draw_map_2d(t_s *s)
 	y = 0;
 	x_tile_size = s->player->x / TILE_SIZE;
 	y_tile_size = s->player->y / TILE_SIZE;
-	s->map->def_y = MINIMAP_X;
-	s->map->def_x = MINIMAP_Y;
+	map->def_y = MINIMAP_X;
+	map->def_x = MINIMAP_Y;
 	//BONUS fonction d'appel du path finding
 
 	fill_minimap_x = 0;
@@ -91,37 +120,37 @@ void	draw_map_2d(t_s *s)
 		while (fill_minimap_y <= 350)
 		{
 			if (point_in_circle(fill_minimap_x, fill_minimap_y, MINIMAP_X, MINIMAP_Y, 150))
-				my_mlx_pixel_put(s->img, fill_minimap_x, fill_minimap_y, 0x4e2823);
+				my_mlx_pixel_put(img, fill_minimap_x, fill_minimap_y, 0x4e2823);
 			else if (point_in_circle(fill_minimap_x, fill_minimap_y, MINIMAP_X, MINIMAP_Y, 160))
-				my_mlx_pixel_put(s->img, fill_minimap_x, fill_minimap_y, 0x182029);
+				my_mlx_pixel_put(img, fill_minimap_x, fill_minimap_y, 0x182029);
 			fill_minimap_y++;
 		}
 		fill_minimap_x++;
 	}
-	co = get_path_finding_input(s->map->map, s->map->map_len, s->map->map_lenght);
-	while (y < s->map->map_lenght)
+	co = get_path_finding_input(map->map, map->map_len, map->map_lenght);
+	while (y < map->map_lenght)
 	{
 		x = 0;
-		while (x < s->map->map_len)
+		while (x < map->map_len)
 		{
-			if (s->map->map[y][x] == '1')
+			if (map->map[y][x] == '1')
 			{
-				s->p->color = 0x4e2823;
+				p->color = 0x4e2823;
 			}
-			else if (s->map->map[y][x] == '0')
+			else if (map->map[y][x] == '0')
 			{
-				s->p->color = 0x397a41;
+				p->color = 0x397a41;
 			}
 			//BONUS colorier la sortie en vert
-			else if (s->map->map[y][x] == 'O')
+			else if (map->map[y][x] == 'O')
 			{
-				s->p->color = 0xb96f2c;
+				p->color = 0xb96f2c;
 			}
-			else if (s->map->map[y][x] == 'E' || s->map->map[y][x] == 'N' || s->map->map[y][x] == 'S' || s->map->map[y][x] == 'W')
+			else if (map->map[y][x] == 'E' || map->map[y][x] == 'N' || map->map[y][x] == 'S' || map->map[y][x] == 'W')
 			{
-				s->p->color = 0x629cc5;
+				p->color = 0x629cc5;
 			}
-			draw_square_minimap(s, (y - x_tile_size) * TILE_SIZE + s->map->def_x, (x - y_tile_size)* TILE_SIZE + s->map->def_y, TILE_SIZE, TILE_SIZE);
+			draw_square_minimap(img, p, (y - x_tile_size) * TILE_SIZE + map->def_x, (x - y_tile_size)* TILE_SIZE + map->def_y, TILE_SIZE, TILE_SIZE);
 			x++;
 		}
 		y++;
@@ -131,15 +160,15 @@ void	draw_map_2d(t_s *s)
 	while(co && i != co->moves)
 	{
 		//BONUS affichage du joueur en bleu
-		s->p->color = 0x333333;
+		p->color = 0x333333;
 		if (i != co->moves - 1)
 		{
-			draw_big_line(s, (co->x[i] - y_tile_size)* TILE_SIZE + 10 + s->map->def_y , (co->y[i] - x_tile_size) * TILE_SIZE + 10 + s->map->def_x, (co->x[i + 1] - y_tile_size) * TILE_SIZE + 10 + s->map->def_y, (co->y[i + 1] - x_tile_size) * TILE_SIZE + 10 + s->map->def_x, 8);
+			draw_big_line(s, (co->x[i] - y_tile_size)* TILE_SIZE + 10 + map->def_y , (co->y[i] - x_tile_size) * TILE_SIZE + 10 + map->def_x, (co->x[i + 1] - y_tile_size) * TILE_SIZE + 10 + map->def_y, (co->y[i + 1] - x_tile_size) * TILE_SIZE + 10 + map->def_x, 8);
 		}
 		if (i == 0)
 		{
 			s->p->color = 0xaa8085;
-			draw_square_minimap(s, (co->y[i] - x_tile_size) * TILE_SIZE + s->map->def_x, (co->x[i] - y_tile_size) * TILE_SIZE + s->map->def_y, TILE_SIZE, TILE_SIZE);
+			draw_square_minimap(img, p, (co->y[i] - x_tile_size) * TILE_SIZE + map->def_x, (co->x[i] - y_tile_size) * TILE_SIZE + map->def_y, TILE_SIZE, TILE_SIZE);
 		}
 		i++;
 	}
@@ -149,22 +178,22 @@ void	draw_map_2d(t_s *s)
 	int j;
 
 	i = 0;
-	if (s->map->map[(int)x_tile_size][(int)y_tile_size] == '0')
+	if (map->map[(int)x_tile_size][(int)y_tile_size] == '0')
 	{
-		while (i != s->map->map_lenght)
+		while (i != map->map_lenght)
 		{
 			j = 0;
-			while (j != s->map->map_len)
+			while (j != map->map_len)
 			{
-				if (s->map->map[i][j] == 'W' || s->map->map[i][j] == 'E' || s->map->map[i][j] == 'S' || s->map->map[i][j] == 'N')
-					s->map->map[i][j] = '0';
+				if (map->map[i][j] == 'W' || map->map[i][j] == 'E' || map->map[i][j] == 'S' || map->map[i][j] == 'N')
+					map->map[i][j] = '0';
 				j++;
 			}
 			i++;
 		}
-		s->map->map[(int)(x_tile_size)][(int)(y_tile_size)] = 'N';
+		map->map[(int)(x_tile_size)][(int)(y_tile_size)] = 'N';
 	}
-	s->p->color = 0x0FFFFF0;
-	draw_circle(s, (s->map->def_x), (s->map->def_y), 5);
-	draw_line_minimap(s, (s->map->def_y), (s->map->def_x), (s->map->def_y) + s->player->delta_y * 5, (s->map->def_x) + s->player->delta_x * 5);
+	p->color = 0x0FFFFF0;
+	draw_circle(s, (map->def_x), (map->def_y), 5);
+	draw_line_minimap(img, p, (map->def_y), (map->def_x), (map->def_y) + player->delta_y * 5, (map->def_x) + player->delta_x * 5);
 }

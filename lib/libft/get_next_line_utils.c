@@ -5,91 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 14:21:26 by mebourge          #+#    #+#             */
-/*   Updated: 2023/07/08 23:04:34 by bgenie           ###   ########.fr       */
+/*   Created: 2022/05/01 16:35:06 by bgenie            #+#    #+#             */
+/*   Updated: 2023/04/27 13:19:07 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "get_next_line.h"
-#include "libft.h"
+#include "get_next_line.h"
 
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
+char	*ft_append(char *line, char buffer)
+{
+	char	*nline;
+	size_t	size;
+	int		i;
 
-// 	i = 0;
-// 	while (s[i] != '\0')
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
-
-// void	ft_bzero(void *s, size_t n)
-// {
-// 	unsigned int	i;
-// 	char			*str;
-
-// 	str = (char *)s;
-// 	i = 0;
-// 	while (i < n)
-// 	{
-// 		*(str + i) = 0;
-// 		i++;
-// 	}
-// }
-
-// void	*ft_calloc(size_t count, size_t size)
-// {
-// 	void	*res;
-
-// 	res = NULL;
-// 	res = malloc(count * size);
-// 	if (!res)
-// 		return (NULL);
-// 	ft_bzero(res, count * size);
-// 	return (res);
-// }
-
-// char	*ft_strjoin(char const *s1, char const *s2)
-// {
-// 	char	*res;
-// 	int		i;
-// 	int		j;
-
-// 	if (!s1 || !s2)
-// 		return (NULL);
-// 	res = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-// 	if (!res)
-// 		return (NULL);
-// 	i = 0;
-// 	while (s1[i] != '\0')
-// 	{
-// 		res[i] = s1[i];
-// 		i++;
-// 	}
-// 	j = i;
-// 	i = 0;
-// 	while (s2[i] != '\0')
-// 	{
-// 		res[j] = s2[i];
-// 		i++;
-// 		j++;
-// 	}
-// 	res[j] = '\0';
-// 	return (res);
-// }
-
-// char	*ft_strchr(const char *s, int c)
-// {
-// 	while (*s)
-// 	{
-// 		if (*s++ == (char)c)
-// 		{
-// 			return ((char *)s - 1);
-// 		}
-// 	}
-// 	if ((char)c == '\0')
-// 		return ((char *)s);
-// 	return (NULL);
-// }
+	i = 0;
+	size = ft_strlen(line);
+	nline = (char *) ft_malloc(sizeof(char) * (size + 2), NULL, MALLOC);
+	while (line && line[i])
+	{
+		nline[i] = line[i];
+		i++;
+	}
+	nline[i] = buffer;
+	nline[i + 1] = 0;
+	if (line)
+		ft_malloc(0, line, FREE);
+	return (nline);
+}

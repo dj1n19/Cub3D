@@ -3,25 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlinbourgeois <merlinbourgeois@studen    +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 13:22:38 by mebourge          #+#    #+#             */
-/*   Updated: 2022/11/23 17:04:52 by merlinbourg      ###   ########.fr       */
+/*   Created: 2022/05/01 15:57:16 by bgenie            #+#    #+#             */
+/*   Updated: 2022/12/17 00:11:06 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# include <stdlib.h>
+// TEST
+// # include "../leaks_checker/leaks.h"
+// TEST
 # include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
+# include "libft.h"
+# if BUFFER_SIZE <= 0
+#  define BUFFER_SIZE 128
+# endif
 
+char	*ft_append(char *line, char buffer);
+char	*ft_read(int fd, char *buffer);
+char	*ft_getline(int fd);
 char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlen(const char *s);
-char	*ft_free(char *buffer, char *buf);
 
 #endif

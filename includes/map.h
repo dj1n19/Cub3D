@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:47:29 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/10 18:32:05 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/12 16:38:30 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <fcntl.h>
 # include <stdio.h> // TO_REMOVE
 # include "libft.h"
-# include "get_next_line.h"
 # include "error.h"
 
 /*

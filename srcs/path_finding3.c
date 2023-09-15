@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:56:25 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/11 15:32:25 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/12 16:22:33 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void	ft_path_finding_map_put_tab(t_map_verif *map)
 	int	j;
 
 	i = 0;
-	map->map_dist = malloc(map->map_mapleng * sizeof(int *));
+	map->map_dist = ft_malloc(map->map_mapleng * sizeof(int *), NULL, MALLOC);
 	if (!map->map_dist)
 		return ;
 	while (i != map->map_mapleng)
 	{
 		j = 0;
-		map->map_dist[i] = malloc(map->map_x * sizeof(int *));
+		map->map_dist[i] = ft_malloc(map->map_x * sizeof(int *), NULL, MALLOC);
 		if (!map->map_dist[i])
 			return ;
 		map->x = 0;

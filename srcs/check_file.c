@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:16:18 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/10 18:01:34 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/12 16:26:53 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ static char	**ft_allocate_table(int fd, t_map *map_struct,
 	i = 0;
 	close(fd);
 	fd = open(argv[1], O_RDONLY);
-	map_struct->map = malloc((map_struct->map_lenght + 1) * sizeof(char *));
-	if (!map_struct->map)
-		exit(EXIT_FAILURE);
+	map_struct->map = ft_malloc((map_struct->map_lenght + 1) * sizeof(char *),
+			NULL, MALLOC);
 	while (i != line_pos - 1)
 	{
 		line = get_next_line(fd);

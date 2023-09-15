@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:00:16 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/11 15:29:15 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/12 16:21:48 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_map_corr	*ft_path_red3(t_map_verif *map, t_map_corr *chain)
 	t_map_corr	*co;
 
 	map->lower_cost = 2147483647;
-	co = malloc(sizeof(t_map_corr));
+	co = ft_malloc(sizeof(t_map_corr), NULL, MALLOC);
 	if (!co)
 		return (NULL);
 	co->next = NULL;

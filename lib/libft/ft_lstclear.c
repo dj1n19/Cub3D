@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:04:32 by mebourge          #+#    #+#             */
-/*   Updated: 2022/10/24 14:04:34 by mebourge         ###   ########.fr       */
+/*   Created: 2022/04/09 23:51:42 by bgenie            #+#    #+#             */
+/*   Updated: 2023/04/27 13:16:18 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
+	t_list	*tmp;
+
+	while (*lst)
 	{
-		lst = lst->next;
+		tmp = *lst;
+		*lst = (*lst)->next;
+		del(tmp->content);
+		ft_malloc(0, tmp, FREE);
 	}
-	return (lst);
+	lst = NULL;
 }

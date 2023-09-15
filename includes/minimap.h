@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:34:36 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/11 14:41:15 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/14 16:56:13 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 # define MINIMAP_H
 # include <math.h>
 # include "constants.h"
+# include "pathfinding.h"
+# include "player.h"
+# include "image.h"
 
 typedef struct s_minimap
 {
 	
 }	t_minimap;
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

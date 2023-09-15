@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:37:43 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/11 15:42:57 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/12 16:57:29 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ void			ft_free_list(t_map_corr *chain);
 *	path_finding1.c
 */
 t_path_return *get_path_finding_input(char **map_map, int rows, int cols);
+
+/*
+*	path_finding2.c
+*/
+t_path_return	*ft_path_finding(t_map_verif *map, char **map_path);
 
 /*
 *	path_finding3.c

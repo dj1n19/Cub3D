@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:40:03 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/11 15:49:18 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/12 16:21:12 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_path_return	*get_path_finding_input(char **map_map, int rows, int cols)
 
 	i = 0;
 	map_path = copy_strings(map_map, cols);
-	map = malloc(1 * sizeof(t_map_verif));
+	map = ft_malloc(1 * sizeof(t_map_verif), NULL, MALLOC);
 	while (i != cols)
 	{
 		j = 0;

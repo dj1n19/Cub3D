@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:45:23 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/10 17:49:18 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/11 15:57:18 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,11 @@ typedef struct s_key_states
     bool north;
     bool south;
 } t_key_states;
+
+/*
+*	hook.c
+*/
+int key_hook(int keycode, t_key_states *ks);
+int	relase_key_hook(int	keycode, t_key_states *ks);
 
 #endif

@@ -3,44 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 13:30:19 by mebourge          #+#    #+#             */
-/*   Updated: 2022/10/27 10:57:49 by mebourge         ###   ########.fr       */
+/*   Created: 2022/04/04 14:44:30 by bgenie            #+#    #+#             */
+/*   Updated: 2023/04/29 18:08:27 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_is_whitespace(char c)
+static int	ft_isspace(char c)
 {
-	return (c == ' ' || c == '\t' || c == '\n' || \
-	c == '\v' || c == '\f' || c == '\r');
+	if (c == ' ')
+		return (1);
+	if (c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v')
+		return (1);
+	return (0);
+}
+
+static const char	*ft_getsign(const char *s, int *is_neg)
+{
+	if (*s == '+' || *s == '-')
+	{
+		if (*s == '-')
+			*is_neg = 1;
+		s++;
+	}
+	return (s);
 }
 
 int	ft_atoi(const char *str)
 {
-	int					sign;
-	unsigned long int	result;
+	long	nbr;
+	int		is_neg;
+	long	tmp;
 
-	sign = 1;
-	result = 0;
-	while (ft_is_whitespace(*str))
+	nbr = 0;
+	is_neg = 0;
+	if (!*str)
+		return (0);
+	while (ft_isspace(*str))
 		str++;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '-' || *str == '+')
-		str++;
-	while ((*str != '\0') && ft_isdigit(*str))
+	str = ft_getsign(str, &is_neg);
+	while (*str && *str >= 48 && *str <= 57)
 	{
-		if ((result > 922337203685477580 || (result == 922337203685477580
-					&& (*str - '0') > 7)) && sign == 1)
+		tmp = nbr;
+		nbr = (nbr * 10) + (*str++ - 48);
+		if (nbr < tmp && is_neg == 0)
 			return (-1);
-		else if ((result > 922337203685477580 || (result == 922337203685477580
-					&& (*str - '0') > 8)) && sign == -1)
+		if (nbr < tmp && is_neg == 1)
 			return (0);
-		result = (result * 10) + (*str - '0');
-		str++;
 	}
-	return ((int)(result * sign));
+	if (is_neg == 1)
+		return (-nbr);
+	return (nbr);
 }

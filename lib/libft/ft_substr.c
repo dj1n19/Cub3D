@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 12:55:14 by mebourge          #+#    #+#             */
-/*   Updated: 2022/10/24 13:45:22 by mebourge         ###   ########.fr       */
+/*   Created: 2022/04/04 16:12:51 by bgenie            #+#    #+#             */
+/*   Updated: 2023/04/27 13:08:15 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	i;
-	char			*res;
+	char		*new_str;
+	int			i;
 
+	i = 0;
 	if (!s)
 		return (NULL);
-	if ((size_t)start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (ft_strlen(s) < len)
-		return (ft_strdup((char *) s + start));
-	i = 0;
-	res = (char *)malloc((len + 1) * sizeof(char));
-	if (!res)
-		return (NULL);
-	if (start >= ft_strlen(s))
+	if (start > ft_strlen(s))
 	{
-		*res = 0;
-		return (res);
+		new_str = ft_malloc(1, NULL, MALLOC);
+		*new_str = 0;
+		return (new_str);
 	}
-	while (s[i] && i != len)
-		res[i++] = s[start++];
-	res[i] = '\0';
-	return (res);
+	s += start;
+	if (ft_strlen(s) > len)
+		new_str = ft_malloc(len + 1, NULL, MALLOC);
+	else
+		new_str = ft_malloc(ft_strlen(s) + 1, NULL, MALLOC);
+	while (*s && len--)
+		new_str[i++] = *s++;
+	new_str[i] = 0;
+	return (new_str);
 }

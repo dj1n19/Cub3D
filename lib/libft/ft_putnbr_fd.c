@@ -3,36 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 16:51:07 by mebourge          #+#    #+#             */
-/*   Updated: 2022/10/24 14:05:25 by mebourge         ###   ########.fr       */
+/*   Created: 2022/04/05 11:28:08 by bgenie            #+#    #+#             */
+/*   Updated: 2022/04/12 14:46:59 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	ft_nbr_size(int n)
+{
+	int	size;
+
+	size = 0;
+	if (n == 0)
+		return (0);
+	while (n != 0)
+	{
+		n /= 10;
+		size++;
+	}
+	return (size);
+}
+
+long int	ft_to_char(long int nbr)
+{
+	if (nbr < 0)
+		nbr = -nbr % 10 + 48;
+	else
+		nbr = nbr % 10 + 48;
+	return (nbr);
+}
+
 void	ft_putnbr_fd(int n, int fd)
 {
+	char		digits[11];
+	long int	nbr;
+	int			i;
+
 	if (fd < 0)
 		return ;
-	if (n == -2147483648)
+	i = ft_nbr_size(n);
+	if (i == 0)
 	{
-		ft_putchar_fd('-', fd);
-		ft_putchar_fd('2', fd);
-		ft_putnbr_fd(147483648, fd);
-		return ;
+		digits[0] = 48;
+		digits[1] = 0;
 	}
-	if (n < 0)
+	else
+		digits[i--] = 0;
+	nbr = (long int) n;
+	if (nbr < 0)
+		write(fd, "-", 1);
+	while (nbr != 0)
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		digits[i--] = ft_to_char(nbr);
+		nbr /= 10;
 	}
-	if (n < 10)
-	{
-		ft_putchar_fd((n + 48), fd);
-		return ;
-	}
-	ft_putnbr_fd(n / 10, fd);
-	ft_putchar_fd((n % 10) + '0', fd);
+	ft_putstr_fd(digits, fd);
 }

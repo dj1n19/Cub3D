@@ -3,76 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 11:14:45 by mebourge          #+#    #+#             */
-/*   Updated: 2022/10/24 10:49:24 by mebourge         ###   ########.fr       */
+/*   Created: 2022/04/05 10:30:24 by bgenie            #+#    #+#             */
+/*   Updated: 2022/04/11 02:31:31 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_estim(long n)
+static int	ft_nbr_size(int n)
 {
-	size_t	estim;
-	int		isneg;
+	int	size;
 
-	estim = 0;
-	isneg = 0;
-	if (n < 0)
+	size = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
 	{
-		estim++;
-		isneg++;
-		n = -n;
-	}
-	while (n >= 1)
-	{
-		estim++;
 		n /= 10;
+		size++;
 	}
-	return (estim);
-}
-
-static char	*ft_gen(char *rtn, long nbr, int len, int isneg)
-{
-	if (nbr != 0)
-		rtn = malloc(sizeof(char) * (len + 1));
-	else
-		return (ft_strdup("0"));
-	if (!rtn)
-		return (0);
-	isneg = 0;
-	if (nbr < 0)
-	{
-		isneg++;
-		nbr = -nbr;
-	}
-	rtn[len] = '\0';
-	while (--len)
-	{
-		rtn[len] = (nbr % 10) + '0';
-		nbr /= 10;
-	}
-	if (isneg == 1)
-		rtn[0] = '-';
-	else
-		rtn[0] = (nbr % 10) + '0';
-	return (rtn);
+	return (size);
 }
 
 char	*ft_itoa(int n)
 {
-	int		len;
-	char	*rtn;
-	long	nbr;
-	int		isneg;
+	char	*anbr;
+	char	*anbr_begin;
 
-	nbr = n;
-	len = ft_estim(nbr);
-	rtn = 0;
-	isneg = 0;
-	rtn = ft_gen(rtn, nbr, len, isneg);
-	if (!rtn)
-		return (0);
-	return (rtn);
+	if (n < 0)
+		anbr = malloc(ft_nbr_size(n) + 2);
+	else
+		anbr = malloc(ft_nbr_size(n) + 1);
+	if (!anbr)
+		return (NULL);
+	anbr_begin = anbr;
+	if (n < 0)
+		*anbr++ = '-';
+	anbr += ft_nbr_size(n) - 1;
+	*(anbr + 1) = 0;
+	if (n == 0)
+		*anbr = 48;
+	while (n != 0)
+	{
+		if (n < 0)
+			*anbr-- = -(n % 10 - 48);
+		else
+			*anbr-- = n % 10 + 48;
+		n /= 10;
+	}
+	return (anbr_begin);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 13:33:50 by mebourge          #+#    #+#             */
-/*   Updated: 2022/10/15 15:28:01 by mebourge         ###   ########.fr       */
+/*   Created: 2022/04/04 16:19:46 by bgenie            #+#    #+#             */
+/*   Updated: 2023/04/27 13:07:15 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,20 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*res;
+	size_t	len;
+	char	*new_str;
 	int		i;
-	int		j;
 
 	if (!s1 || !s2)
 		return (NULL);
-	res = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!res)
-		return (NULL);
+	len = ft_strlen(s1);
+	len += ft_strlen(s2);
 	i = 0;
-	while (s1[i] != '\0')
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	j = i;
-	i = 0;
-	while (s2[i] != '\0')
-	{
-		res[j] = s2[i];
-		i++;
-		j++;
-	}
-	res[j] = '\0';
-	return (res);
+	new_str = ft_malloc(len + 1, NULL, MALLOC);
+	while (*s1)
+		new_str[i++] = *s1++;
+	while (*s2)
+		new_str[i++] = *s2++;
+	new_str[i] = 0;
+	return (new_str);
 }
