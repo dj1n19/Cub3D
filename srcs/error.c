@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 06:46:54 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/10 18:06:26 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:40:46 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/error.h"
+#include "../includes/cub3d.h"
 
 // fonction d'affichage des erreur
 

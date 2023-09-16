@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:35:12 by bgenie            #+#    #+#             */
-/*   Updated: 2023/05/15 14:47:19 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:52:26 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			*ft_malloc(size_t size, void *ptr, int action);
 /*
 *		ft_realloc.c
 */
-void			*ft_realloc(char **p, size_t size);
+void			*ft_realloc(char *p, size_t size);
 
 char			*ft_strdup(const char *s1);
 

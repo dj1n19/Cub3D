@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:49:47 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/10 18:27:04 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:41:22 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/map.h"
+#include "../includes/cub3d.h"
 
 //Fichier contenant le découpage d'une fonction servant 
 //a parser le contenu du fichier .cub et le mettre

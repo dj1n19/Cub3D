@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 18:04:43 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/10 18:06:45 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:18:57 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define BAD_PLAYER_ERROR "Not enough or too many players present on the map"
 # define BAD_FILE "Bad file arrangement"
 # include <stdio.h>
+# include <stdlib.h>
 
 void	ft_error(char *str);
 

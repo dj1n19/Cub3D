@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:05:19 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/12 16:24:23 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:43:26 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pathfinding.h"
+#include "../includes/cub3d.h"
 
 void	ft_free_list(t_map_corr *chain)
 {

@@ -6,31 +6,23 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:22:12 by bgenie            #+#    #+#             */
-/*   Updated: 2023/05/25 19:57:56 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:53:29 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-static void	free_array(char **p)
+static void	free_array(char *p)
 {
-	char	**save;
-
-	save = p;
 	if (p)
 	{
-		while (*p)
-		{
-			ft_malloc(0, *p, FREE);
-			p++;
-		}
-		ft_malloc(0, save, FREE);
+		ft_malloc(0, p, FREE);
 	}
 }
 
-void	*ft_realloc(char **p, size_t size)
+void	*ft_realloc(char *p, size_t size)
 {
-	char	**new_alloc;
+	char	*new_alloc;
 	size_t	i;
 
 	i = 0;
@@ -41,7 +33,7 @@ void	*ft_realloc(char **p, size_t size)
 		return (NULL);
 	while (p[i])
 	{
-		new_alloc[i] = ft_strdup(p[i]);
+		new_alloc[i] = p[i];
 		i++;
 	}
 	free_array(p);

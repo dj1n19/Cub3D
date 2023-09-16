@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:00:16 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/12 16:21:48 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:41:44 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pathfinding.h"
+#include "../includes/cub3d.h"
 
 t_map_corr	*ft_path_red3(t_map_verif *map, t_map_corr *chain)
 {

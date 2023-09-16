@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:35:44 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/10 17:56:24 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:42:11 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/player.h"
+#include "../includes/cub3d.h"
 
 static void	update_player_movement_down(t_player *p, t_key_states *ks,
 	t_map *m, double delta_time)

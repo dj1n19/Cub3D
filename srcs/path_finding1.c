@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:40:03 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/12 16:21:12 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:41:33 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pathfinding.h"
+#include "../includes/cub3d.h"
 
 static t_path_return	*get_path_finding_input2(char **map_path,
 	t_map_verif *map, int rows, int cols)

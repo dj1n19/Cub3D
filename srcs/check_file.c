@@ -6,11 +6,12 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:16:18 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/12 16:26:53 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:38:42 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/map.h"
+// #include "../includes/map.h"
+#include "../includes/cub3d.h"
 
 //fonction d'allocation du tableau de string de la map
 

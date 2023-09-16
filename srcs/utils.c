@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:11:26 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/12 16:49:13 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 16:18:30 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 // void	*ft_realloc(void *p, size_t size)
 // {

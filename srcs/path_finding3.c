@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:56:25 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/12 16:22:33 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:41:54 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pathfinding.h"
+#include "../includes/cub3d.h"
 
 t_map_corr	*get_last(t_map_corr *chain)
 {

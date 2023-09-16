@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 17:10:34 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/10 18:28:56 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:41:14 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/map.h"
+#include "../includes/cub3d.h"
 
 //fonction de free pour les tableau de char
 

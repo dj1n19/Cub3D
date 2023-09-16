@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:53:10 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/11 15:56:19 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:40:55 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/event.h"
+#include "../includes/cub3d.h"
 
 int	relase_key_hook(int	keycode, t_key_states *ks)
 {

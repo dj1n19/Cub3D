@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:26:19 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/10 18:01:14 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:41:04 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/map.h"
+#include "../includes/cub3d.h"
 
 /*
 * Ce fichier sert a parser la map en changant

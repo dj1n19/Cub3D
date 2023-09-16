@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:04:13 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/10 18:20:13 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:43:55 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/map.h"
+#include "../includes/cub3d.h"
 
 //Le fichier entier est une découpe d'une fonction destinée 
 //a vérifier que la map soit bien entourée de mur

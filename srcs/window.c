@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 16:29:39 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/12 16:47:46 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 16:25:47 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static int	paint_frame(t_s *s)
 {
 	double	fps;
 
-	update_player_movement(s, 0.5);
+	update_player_movement(s->player, &s->key_states, s->map, 0.5);
 	s->player->delta_x = cos(s->player->player_angle) * 5;
 	s->player->delta_y = sin(s->player->player_angle) * 5;
 	display_ceiling_floor(*s->img, s->map);
 	cast_rays(s);
-	draw_map_2d(s);
+	draw_map_2d(s->map, s->img, s->p, s->player);
 	mlx_put_image_to_window(s->p->mlx, s->p->mlx_win, s->xpm[4].img, 150, 150);
 	mlx_put_image_to_window(s->p->mlx, s->p->mlx_win, s->img->img, 0, 0);
 	fps = fps_counter(s);

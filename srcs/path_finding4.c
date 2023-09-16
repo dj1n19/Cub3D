@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:57:46 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/11 15:36:27 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:42:03 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pathfinding.h"
+#include "../includes/cub3d.h"
 
 static int	ft_path_finding_alredy(int y, int x, t_map_corr *chain)
 {

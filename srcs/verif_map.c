@@ -6,11 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 06:46:57 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/10 18:24:34 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:43:48 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/map.h"
+#include "../includes/cub3d.h"
 
 //fonction d'impression de la map (a supprimer)
 

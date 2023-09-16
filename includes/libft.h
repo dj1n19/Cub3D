@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:45:06 by bgenie            #+#    #+#             */
-/*   Updated: 2023/05/13 15:56:33 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:17:44 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <stdint.h>
 # include "get_next_line.h"
-# include "ft_printf.h"
 # include "ft_malloc.h"
 
 typedef struct s_list

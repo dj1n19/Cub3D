@@ -20,8 +20,9 @@ SRC_FILES =	main.c \
 			sprite.c \
 			player.c \
 			textures.c \
-			draw.c \
-			draw_minimap.c
+			draw_minimap.c \
+			hook.c \
+			window.c
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRC_FILES))
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(basename $(SRC_FILES))))
@@ -42,7 +43,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 all: $(NAME)
 
 debug: fclean libft mlx $(OBJS)
-	${CC} ${CFLAGS} -fsanitize=address -g -o ${NAME} -I${INCLUDES_DIR} ${OBJS} -I${LIB_DIR} -lft -lmlx -lXext -X11 -lm -lz
+	${CC} ${CFLAGS} -fsanitize=address -g -o ${NAME} -I${INCLUDES_DIR} ${OBJS} -I${LIB_DIR} -lft -lmlx -lXext -lm -lz
 
 libft:
 	make -C $(LIBFT_DIR)
@@ -56,7 +57,7 @@ mlx:
 	cp $(MLX_DIR)/libmlx.a $(LIB_DIR)
 
 $(NAME): libft mlx $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) -I$(INCLUDES_DIR) $(OBJS) -L$(LIB_DIR) -lft -lmlx -lXext -X11 -lm -lz
+	$(CC) $(CFLAGS) -o $(NAME) -I$(INCLUDES_DIR) $(OBJS) -L$(LIB_DIR) -lft -lmlx -lXext -lm -lz
 
 clean:
 	rm -f $(OBJS)
