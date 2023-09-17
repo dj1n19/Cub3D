@@ -1,4 +1,4 @@
-CFLAGS = #-O2 -O1 -O3 -march=native -mtune=native -fopenmp -ftree-vectorize -msse2 -msse3 -mavx -mavx2 -falign-functions -falign-loops -falign-jumps -falign-labels -funroll-loops -fomit-frame-pointer -finline-functions -fstrict-aliasing -ftree-vectorizer-verbose=2 -fprefetch-loop-arrays -fno-strict-overflow -fno-strict-aliasing
+CFLAGS = -fsanitize=address -g #-O2 -O1 -O3 -march=native -mtune=native -fopenmp -ftree-vectorize -msse2 -msse3 -mavx -mavx2 -falign-functions -falign-loops -falign-jumps -falign-labels -funroll-loops -fomit-frame-pointer -finline-functions -fstrict-aliasing -ftree-vectorizer-verbose=2 -fprefetch-loop-arrays -fno-strict-overflow -fno-strict-aliasing
 CC = gcc
 
 SRC_FILES =	main.c \
@@ -43,7 +43,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 all: $(NAME)
 
 debug: fclean libft mlx $(OBJS)
-	${CC} ${CFLAGS} -fsanitize=address -g -o ${NAME} -I${INCLUDES_DIR} ${OBJS} -I${LIB_DIR} -lft -lmlx -lXext -lm -lz
+	${CC} ${CFLAGS} -fsanitize=address -g -o ${NAME} -I${INCLUDES_DIR} ${OBJS} -I${LIB_DIR} -lft -lmlx -lXext -lm -lz -lX11
 
 libft:
 	make -C $(LIBFT_DIR)
@@ -57,7 +57,7 @@ mlx:
 	cp $(MLX_DIR)/libmlx.a $(LIB_DIR)
 
 $(NAME): libft mlx $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) -I$(INCLUDES_DIR) $(OBJS) -L$(LIB_DIR) -lft -lmlx -lXext -lm -lz
+	$(CC) $(CFLAGS) -o $(NAME) -I$(INCLUDES_DIR) $(OBJS) -L$(LIB_DIR) -lft -lmlx -lXext -lX11 -lm -lz
 
 clean:
 	rm -f $(OBJS)
