@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 16:29:39 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/16 16:25:47 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/17 23:34:54 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int	paint_frame(t_s *s)
 {
-	double	fps;
-
 	update_player_movement(s->player, &s->key_states, s->map, 0.5);
 	s->player->delta_x = cos(s->player->player_angle) * 5;
 	s->player->delta_y = sin(s->player->player_angle) * 5;
@@ -24,18 +22,15 @@ static int	paint_frame(t_s *s)
 	draw_map_2d(s->map, s->img, s->p, s->player);
 	mlx_put_image_to_window(s->p->mlx, s->p->mlx_win, s->xpm[4].img, 150, 150);
 	mlx_put_image_to_window(s->p->mlx, s->p->mlx_win, s->img->img, 0, 0);
-	fps = fps_counter(s);
-	mlx_string_put(s->p->mlx, s->p->mlx_win, SCREEN_WIDTH - 40,
-			SCREEN_HEIGHT - 40, 0xFFFF00FF, ft_itoa((int)fps));
 	return (0);
 }
 
 static void	init_struct(t_s *s, t_map *map)
 {
 	s->key_states.east = false;
-    s->key_states.west = false;
-    s->key_states.north = false;
-    s->key_states.south = false;
+	s->key_states.west = false;
+	s->key_states.north = false;
+	s->key_states.south = false;
 	s->player->x = map->def_x;
 	s->player->y = map->def_y;
 	s->player->player_angle = M_PI_2;
@@ -57,7 +52,7 @@ static void	ft_allocate_struct(t_s *s)
 
 void	display_window(t_map *map)
 {
-	t_s s;
+	t_s	s;
 
 	s.map = map;
 	ft_allocate_struct(&s);
@@ -71,8 +66,8 @@ void	display_window(t_map *map)
 			&s.img->line_length, &s.img->endian);
 	s.start_time = get_current_microseconds();
 	load_textures(&s);
-	mlx_hook(s.p->mlx_win, 3, 1L<<0, relase_key_hook, &s.key_states);
-	mlx_hook(s.p->mlx_win, 2, 1L<<1, key_hook, &s.key_states);
+	mlx_hook(s.p->mlx_win, 3, 1L << 0, relase_key_hook, &s.key_states);
+	mlx_hook(s.p->mlx_win, 2, 1L << 1, key_hook, &s.key_states);
 	mlx_loop_hook(s.p->mlx, paint_frame, &s);
 	mlx_loop(s.p->mlx);
 }

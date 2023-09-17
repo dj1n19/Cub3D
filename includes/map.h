@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:47:29 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/12 16:38:30 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/17 23:52:49 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_map
 	char	*east_texture;
 	char	*west_texture;
 	int		floor_color;
-	int		Ceiling_color;
+	int		ceiling_color;
 	int		map_lenght;
 	int		map_len;
 	int		map_max;

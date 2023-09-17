@@ -6,36 +6,11 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 06:46:57 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/16 15:43:48 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/17 23:33:39 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-//fonction d'impression de la map (a supprimer)
-
-// void	ft_print_map(t_map *map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	printf("%s -->%s\n", "NO", map->north_texture);
-// 	printf("%s -->%s\n", "SO", map->south_texture);
-// 	printf("%s -->%s\n", "WE", map->west_texture);
-// 	printf("%s -->%s\n", "EA", map->east_texture);
-// 	printf("floor / 1 : %d, 2 : %d, 3 : %d\n",
-// 		(unsigned char)map->floor_color, (unsigned char)(map->floor_color >> 8),
-// 		(unsigned char)(map->floor_color >> 16));
-// 	printf("Ceiling / 1 : %d, 2 : %d, 3 : %d\n",
-// 		(unsigned char)map->Ceiling_color,
-// 		(unsigned char)(map->Ceiling_color >> 8),
-// 		(unsigned char)(map->Ceiling_color >> 16));
-// 	while (i < map->map_lenght)
-// 	{
-// 		printf("%s\n", map->map[i]);
-// 		i++;
-// 	}
-// }
 
 //fonction de vérification de la présence du joueur sur la carte
 
@@ -154,5 +129,4 @@ void	ft_verif_char_map(t_map *map)
 		ft_error(MAP_LAYOUT_ERROR);
 	space_to_one(map);
 	map->map_len = ft_strlen(map->map[0]);
-	// ft_print_map(map);
 }

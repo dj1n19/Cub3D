@@ -17,7 +17,6 @@ SRC_FILES =	main.c \
 			path_finding4.c \
 			utils_path_finding.c \
 			raycast.c \
-			sprite.c \
 			player.c \
 			textures.c \
 			draw_minimap.c \

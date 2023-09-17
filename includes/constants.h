@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 16:25:26 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/10 18:06:52 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/17 23:30:05 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # define SCREEN_HEIGHT_1 SCREEN_HEIGHT / 2
 # define SCREEN_WIDTH 1200
 # define TITLE_SCREEN "Cub3D"
-# define MAX_FPS 100
 # define BITS_PER_BYTE 8
 # define MINIMAP_X 170
 # define MINIMAP_Y 170

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:49:47 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/16 15:41:22 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/17 23:53:02 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_put_file_table4(t_verif *verif, t_map *map_struct)
 		verif->tmp = ft_split(ft_strrchr(verif->line, ' ') + 1, ',');
 		while (verif->tmp[verif->indic] != NULL)
 		{
-			map_struct->Ceiling_color |= (ft_atoi(verif->tmp[verif->indic])
+			map_struct->ceiling_color |= (ft_atoi(verif->tmp[verif->indic])
 					<< (verif->indic * 8));
 			verif->indic++;
 		}
@@ -87,7 +87,7 @@ static void	ft_put_file_table2(t_verif *verif, t_map *map_struct)
 		verif->instruct++;
 	}
 	else if (ft_strncmp(verif->line, "SO ", 3) == 0)
-	{		
+	{
 		map_struct->south_texture = ft_substr(verif->line, 3,
 				ft_strlen(verif->line) - 4);
 		verif->instruct++;
@@ -109,7 +109,7 @@ int	ft_put_file_table(int fd, t_map *map_struct)
 	verif.line_pos = 0;
 	verif.map_pos = 0;
 	map_struct->floor_color = 0;
-	map_struct->Ceiling_color = 0;
+	map_struct->ceiling_color = 0;
 	while (verif.instruct != 6)
 	{
 		verif.line = get_next_line(fd);

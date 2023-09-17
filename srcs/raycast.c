@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:42:21 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/17 22:47:57 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/18 00:01:08 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ unsigned int get_wall_face_color(t_s *s, char wall_face, int x, int y)
 
 //fonction de déplacement de la caméra
 
-camera_t *updateCameraPosition(camera_t *camera, float dx, float dy)
+t_camera *updateCameraPosition(t_camera *camera, float dx, float dy)
 {
     camera->pos.x += camera->dir.x * dy + camera->dir.y * dx;
     camera->pos.y += camera->dir.y * dy - camera->dir.x * dx;
@@ -71,7 +71,7 @@ float getCorrectedDistance(float distance, float angle)
 
 //fonction génerale du raycast
 
-void render(camera_t *camera, char **map, t_s *s)
+static void render(t_camera *camera, char **map, t_s *s)
 {
     const float inv_num_rays = 1.0f / NUM_RAYS;
     const int half_screen_height = SCREEN_HEIGHT / 2;
@@ -82,7 +82,7 @@ void render(camera_t *camera, char **map, t_s *s)
     for (int i = 0; i < NUM_RAYS; i++)
     {
         float rayAngle = (camera->dir.x - fov_offset) + ((float)i * fov_times_inv_num_rays);
-        ray_t ray = { 0 };
+        t_ray_wall ray = { 0 };
         int mapX = (int)camera->pos.x;
         int mapY = (int)camera->pos.y;
         float eyeX = sin(rayAngle);
@@ -121,18 +121,18 @@ void render(camera_t *camera, char **map, t_s *s)
                 sideDistX += deltaDistX;
                 mapX += stepX;
                 if (stepX == 1)
-                    ray.wallFace = 'E';
+                    ray.wall_face = 'E';
                 else
-                    ray.wallFace = 'W';
+                    ray.wall_face = 'W';
             }
             else
             {
                 sideDistY += deltaDistY;
                 mapY += stepY;
                 if (stepY == 1)
-                    ray.wallFace = 'N';
+                    ray.wall_face = 'N';
                 else
-                    ray.wallFace = 'S';
+                    ray.wall_face = 'S';
             }
             if (map[mapY][mapX] == '1')
             {
@@ -140,7 +140,7 @@ void render(camera_t *camera, char **map, t_s *s)
             }
         }
         float perpWallDist;
-        if (ray.wallFace == 'E' || ray.wallFace == 'W')
+        if (ray.wall_face == 'E' || ray.wall_face == 'W')
         {
             perpWallDist = (mapX - camera->pos.x + (1 - stepX) / 2) / eyeX;
         }
@@ -155,7 +155,7 @@ void render(camera_t *camera, char **map, t_s *s)
         int drawEnd = halfWallHeight + half_screen_height;
         int lineHeight = drawEnd - drawStart;
         float wallX;
-        if (ray.wallFace == 'N' || ray.wallFace == 'S')
+        if (ray.wall_face == 'N' || ray.wall_face == 'S')
             wallX = camera->pos.x + perpWallDist * eyeX;
         else
             wallX = camera->pos.y + perpWallDist * eyeY;
@@ -163,18 +163,18 @@ void render(camera_t *camera, char **map, t_s *s)
         wallX -= floor(wallX);
 
         int texNum;
-        if (ray.wallFace == 'N')
+        if (ray.wall_face == 'N')
             texNum = 0;
-        else if (ray.wallFace == 'S')
+        else if (ray.wall_face == 'S')
             texNum = 1;
-        else if (ray.wallFace == 'W')
+        else if (ray.wall_face == 'W')
             texNum = 2;
-        else // ray.wallFace == 'E'
+        else // ray.wall_face == 'E'
             texNum = 3;
 
         int texX = (int)(wallX * (float)s->xpm[texNum].width);
-        if (((ray.wallFace == 'N' || ray.wallFace == 'S') && eyeX > 0) ||
-            ((ray.wallFace == 'W' || ray.wallFace == 'E') && eyeY < 0))
+        if (((ray.wall_face == 'N' || ray.wall_face == 'S') && eyeX > 0) ||
+            ((ray.wall_face == 'W' || ray.wall_face == 'E') && eyeY < 0))
             texX = s->xpm[texNum].width - texX - 1;
 
         float step = 1.0 * s->xpm[texNum].height / lineHeight;
@@ -184,7 +184,7 @@ void render(camera_t *camera, char **map, t_s *s)
         {
             int texY = (int)texPos & (s->xpm[texNum].height - 1);
             texPos += step;
-            s->p->color = get_wall_face_color(s, ray.wallFace, abs(texX), abs(texY));
+            s->p->color = get_wall_face_color(s, ray.wall_face, abs(texX), abs(texY));
 			//printf("color : %x\nx : %d, y : %d\n", s->p->color, i, j);
             my_mlx_pixel_put(s->img, abs(i), abs(j), s->p->color);
         }
@@ -195,6 +195,11 @@ void render(camera_t *camera, char **map, t_s *s)
 
 void cast_rays(t_s *s)
 {
-    camera_t camera = { { s->player->y / TILE_SIZE, s->player->x / TILE_SIZE }, { s->player->player_angle, -1.0 } };
+    t_camera camera;
+
+	camera.pos.x = s->player->y / TILE_SIZE;
+	camera.pos.y = s->player->x / TILE_SIZE;
+	camera.dir.x = s->player->player_angle;
+	camera.dir.y = -1.0;
     render(&camera, s->map->map, s);
 }
