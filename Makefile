@@ -1,4 +1,4 @@
-CFLAGS = -fsanitize=address -g #-O2 -O1 -O3 -march=native -mtune=native -fopenmp -ftree-vectorize -msse2 -msse3 -mavx -mavx2 -falign-functions -falign-loops -falign-jumps -falign-labels -funroll-loops -fomit-frame-pointer -finline-functions -fstrict-aliasing -ftree-vectorizer-verbose=2 -fprefetch-loop-arrays -fno-strict-overflow -fno-strict-aliasing
+CFLAGS = -O2 -O1 -O3 -march=native -mtune=native -fopenmp -ftree-vectorize -msse2 -msse3 -mavx -mavx2 -falign-functions -falign-loops -falign-jumps -falign-labels -funroll-loops -fomit-frame-pointer -finline-functions -fstrict-aliasing -ftree-vectorizer-verbose=2 -fprefetch-loop-arrays -fno-strict-overflow -fno-strict-aliasing
 CC = gcc
 
 SRC_FILES =	main.c \

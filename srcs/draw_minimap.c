@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:32:03 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/16 16:08:45 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/17 22:39:09 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	draw_line_minimap(t_data *img, t_mlx *p, int x0, int y0, int x1, int
 	int	e2;
 
 	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
+	dy = -abs(y1 - y0);
+
 	if (x0 < x1)
 		sx = 1;
 	else

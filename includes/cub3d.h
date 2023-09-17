@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/16 16:24:33 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/17 22:44:01 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,16 @@
 
 typedef enum e_directions
 {
-	SOUTH = 1,
-	NORTH = 13,
-	EAST = 2,
-	WEST = 0,
-	ESC = 53,
+	// SOUTH = 1,
+	// NORTH = 13,
+	// EAST = 2,
+	// WEST = 0,
+	// ESC = 53,
+	NORTH = 119,
+	WEST = 97,
+	SOUTH = 115,
+	EAST = 100,
+	ESC = 65307,
 }	t_directions;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:42:21 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/16 15:42:32 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/17 22:47:57 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void render(camera_t *camera, char **map, t_s *s)
         float step = 1.0 * s->xpm[texNum].height / lineHeight;
         float texPos = (drawStart - half_screen_height + lineHeight / 2) * step;
 
-        for (int j = drawStart; j < drawEnd && drawEnd > 0 && drawStart > 0 && j < SCREEN_HEIGHT; j++)
+        for (int j = drawStart; j < drawEnd; j++ && drawEnd > 0 && drawStart > 0 && j < SCREEN_HEIGHT)
         {
             int texY = (int)texPos & (s->xpm[texNum].height - 1);
             texPos += step;
@@ -190,7 +190,6 @@ void render(camera_t *camera, char **map, t_s *s)
         }
     }
 }
-
 
 //fonction pour mettre les variable de t_s dans les variables spécifiques au raycast
 

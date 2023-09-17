@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:26:19 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/16 15:41:04 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/17 22:33:22 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	get_longest_line_length(t_map *map)
 			longest_len = j;
 		i++;
 	}
+	return (longest_len);
 }
 
 void	space_to_one(t_map *map)
@@ -53,7 +54,7 @@ void	space_to_one(t_map *map)
 				map->map[i][j] = '1';
 			j++;
 		}
-		map->map[i] = ft_realloc(map->map[i], long_line_len + 1);
+		map->map[i] = ft_malloc(long_line_len + 1, map->map[i], REALLOC);
 		while (j < long_line_len)
 		{
 			map->map[i][j] = '1';
