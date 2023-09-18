@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/17 23:51:04 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/18 02:21:47 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,6 +302,48 @@ typedef struct s_ray_wall{
 	char	wall_type;
 	char	wall_face;
 }	t_ray_wall;
+
+typedef struct s_map_2d
+{
+	float	x_tile_size;
+	float	y_tile_size;
+}	t_map_2d;
+
+/*
+*	structure de gestion de la fonction render
+*/
+
+typedef struct s_render {
+	float		inv_num_rays;
+    float		half_screen_height;
+    float		fov_offset;
+    float		fov_times_inv_num_rays;
+	float		ray_angle;
+	t_ray_wall	ray;
+	int 		map_x;
+	int 		map_y;
+	float 		eye_x;
+	float 		eye_y;
+	float 		delta_dist_x;
+	float 		delta_dist_y;
+	float 		side_dist_x;
+	float 		side_dist_y;
+	int 		step_x;
+	int 		step_y;
+	int 		hit;
+	float 		perp_wall_dist;
+	int 		wall_height;
+	int 		half_wall_Height;
+	int 		draw_start;
+	int 		draw_end;
+	int 		line_height;
+	float 		wall_x;
+	int 		tex_num;
+	int 		tex_x;
+	float 		step;
+	float 		tex_pos;
+	int 		tex_y;
+}	t_render;
 
 /*
 *	Parsing_map.c
