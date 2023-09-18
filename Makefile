@@ -21,7 +21,9 @@ SRC_FILES =	main.c \
 			textures.c \
 			draw_minimap.c \
 			hook.c \
-			window.c
+			window.c \
+			render.c \
+			render_utils.c
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRC_FILES))
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(basename $(SRC_FILES))))

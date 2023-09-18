@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/18 02:21:47 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/18 15:55:02 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -443,5 +443,21 @@ int				relase_key_hook(int keycode, t_key_states *ks);
 void			display_ceiling_floor(t_data img, t_map *map);
 void			draw_map_2d(t_map *map, t_data *img,
 					t_mlx *p, t_player *player);
+unsigned int	get_wall_face_color(t_s *s, char wall_face, int x, int y);
+float			get_corrected_distance(float distance, float angle);
+
+/*
+*	render.c
+*/
+
+void	render(t_camera *camera, char **map, t_s *s);
+
+/*
+*	render_utils.c
+*/
+
+void	render_init(t_render *r, t_camera *camera, int i);
+void	render_hit(char **map, t_render *r);
+
 
 #endif
