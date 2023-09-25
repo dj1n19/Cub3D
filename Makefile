@@ -20,6 +20,9 @@ SRC_FILES =	main.c \
 			player.c \
 			textures.c \
 			draw_minimap.c \
+			draw_minimap_utils.c \
+			draw_minimap_pathfinding.c \
+			draw_minimap_circle.c \
 			hook.c \
 			window.c \
 			render.c \
@@ -39,12 +42,13 @@ NAME = cub3D
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	mkdir -p $(OBJS_DIR)
-	$(CC) $(CFLAGS) -c -o $@ -I$(INCLUDES_DIR) $<
+	$(CC) $(CFLAGS) -g -c -o $@ -I$(INCLUDES_DIR) $<
 
 all: $(NAME)
 
 debug: fclean libft mlx $(OBJS)
-	${CC} ${CFLAGS} -fsanitize=address -g -o ${NAME} -I${INCLUDES_DIR} ${OBJS} -I${LIB_DIR} -lft -lmlx -lXext -lm -lz -lX11
+	$(CC) $(CFLAGS) -fsanitize=address -g -o $(NAME) -I$(INCLUDES_DIR) $(OBJS) -L$(LIB_DIR) -lft -lmlx -lXext -lX11 -lm -lz
+
 
 libft:
 	make -C $(LIBFT_DIR)

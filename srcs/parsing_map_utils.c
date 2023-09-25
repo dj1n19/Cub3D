@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 17:10:34 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/16 15:41:14 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:33:04 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	free_tab(char **tmp)
 		return ;
 	while (tmp[i])
 	{
-		free(tmp[i]);
+		ft_malloc(0, tmp[i], FREE);
 		i++;
 	}
-	free(tmp);
+	ft_malloc(0, tmp, FREE);
 }
 
 int	ft_find_my_str(char *s, int i)

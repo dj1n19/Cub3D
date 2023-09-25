@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/18 15:55:02 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:50:02 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,11 +303,36 @@ typedef struct s_ray_wall{
 	char	wall_face;
 }	t_ray_wall;
 
-typedef struct s_map_2d
+typedef struct s_minimap
 {
-	float	x_tile_size;
-	float	y_tile_size;
-}	t_map_2d;
+	t_map		*map;
+	t_data		*img;
+	t_mlx		*p;
+	t_player	*player;
+	float		x_tile_size;
+	float		y_tile_size;
+}	t_minimap;
+
+typedef struct s_minimap_data
+{
+	int	x;
+	int	y;
+	int	size_x;
+	int	size_y;
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	thick;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+	int	coordinate_x;
+	int	coordinate_y;
+}	t_minimap_data;
 
 /*
 *	structure de gestion de la fonction render
@@ -315,34 +340,34 @@ typedef struct s_map_2d
 
 typedef struct s_render {
 	float		inv_num_rays;
-    float		half_screen_height;
-    float		fov_offset;
-    float		fov_times_inv_num_rays;
+	float		half_screen_height;
+	float		fov_offset;
+	float		fov_times_inv_num_rays;
 	float		ray_angle;
 	t_ray_wall	ray;
-	int 		map_x;
-	int 		map_y;
-	float 		eye_x;
-	float 		eye_y;
-	float 		delta_dist_x;
-	float 		delta_dist_y;
-	float 		side_dist_x;
-	float 		side_dist_y;
-	int 		step_x;
-	int 		step_y;
-	int 		hit;
-	float 		perp_wall_dist;
-	int 		wall_height;
-	int 		half_wall_Height;
-	int 		draw_start;
-	int 		draw_end;
-	int 		line_height;
-	float 		wall_x;
-	int 		tex_num;
-	int 		tex_x;
-	float 		step;
-	float 		tex_pos;
-	int 		tex_y;
+	int			map_x;
+	int			map_y;
+	float		eye_x;
+	float		eye_y;
+	float		delta_dist_x;
+	float		delta_dist_y;
+	float		side_dist_x;
+	float		side_dist_y;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	float		perp_wall_dist;
+	int			wall_height;
+	int			half_wall_height;
+	int			draw_start;
+	int			draw_end;
+	int			line_height;
+	float		wall_x;
+	int			tex_num;
+	int			tex_x;
+	float		step;
+	float		tex_pos;
+	int			tex_y;
 }	t_render;
 
 /*
@@ -441,8 +466,6 @@ int				key_hook(int keycode, t_key_states *ks);
 int				relase_key_hook(int keycode, t_key_states *ks);
 
 void			display_ceiling_floor(t_data img, t_map *map);
-void			draw_map_2d(t_map *map, t_data *img,
-					t_mlx *p, t_player *player);
 unsigned int	get_wall_face_color(t_s *s, char wall_face, int x, int y);
 float			get_corrected_distance(float distance, float angle);
 
@@ -450,14 +473,47 @@ float			get_corrected_distance(float distance, float angle);
 *	render.c
 */
 
-void	render(t_camera *camera, char **map, t_s *s);
+void			render(t_camera *camera, char **map, t_s *s);
 
 /*
 *	render_utils.c
 */
 
-void	render_init(t_render *r, t_camera *camera, int i);
-void	render_hit(char **map, t_render *r);
+void			render_init(t_render *r, t_camera *camera, int i);
+void			render_hit(char **map, t_render *r);
 
+/*
+*	draw_minimap.c
+*/
+void			draw_map_2d(t_map *map, t_data *img,
+					t_mlx *p, t_player *player);
+void			draw_square_minimap(t_data *img, t_mlx *p,
+					t_minimap_data *md);
+
+/*
+*	draw_minimap_pathfinding.c
+*/
+void			draw_pathfinding(t_data *img, t_mlx *p,
+					t_map *map, t_minimap *mm);
+
+/*
+*	draw_minimap_circle.c
+*/
+void			draw_circle(t_minimap *mm, int x0, int y0, int radius);
+void			draw_map_circle(t_data *img);
+
+/*
+*	draw_minimap_utils.c
+*/
+int				point_in_circle(double x, double y, double r);
+void			set_color(t_minimap *mm, int x, int y);
+void			update_position_pathfinding(t_map *map,
+					t_mlx *p, t_minimap *mm);
+void			draw_line_minimap(t_data *img, t_mlx *p, t_minimap_data md);
+
+/*
+*	main.c
+*/
+int				ft_exit(void *data);
 
 #endif

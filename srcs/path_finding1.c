@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:40:03 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/16 15:41:33 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:31:35 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ static t_path_return	*get_path_finding_input2(char **map_path,
 	coord = ft_path_finding(map, map_path);
 	i = 0;
 	while (i != map->map_mapleng && map->map_dist[i])
-		free(map->map_dist[i++]);
-	free(map->map_dist);
-	free(map);
+		ft_malloc(0, map->map_dist[i++], FREE);
+	ft_malloc(0, map->map_dist, FREE);
+	ft_malloc(0, map, FREE);
 	i = 0;
 	while (i != cols)
 	{
-		free(map_path[i]);
+		ft_malloc(0, map_path[i], FREE);
 		i++;
 	}
-	free(map_path);
+	ft_malloc(0, map_path, FREE);
 	return (coord);
 }
 

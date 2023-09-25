@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:05:19 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/17 23:42:34 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:29:59 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_free_list(t_map_corr *chain)
 		last = get_last(chain);
 		while (e->next != last)
 			e = e->next;
-		free(e->next);
+		ft_malloc(0, e->next, FREE);
 		e->next = NULL;
 	}
 }

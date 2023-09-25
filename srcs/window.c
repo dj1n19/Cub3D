@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 16:29:39 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/17 23:34:54 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:23:19 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	display_window(t_map *map)
 	load_textures(&s);
 	mlx_hook(s.p->mlx_win, 3, 1L << 0, relase_key_hook, &s.key_states);
 	mlx_hook(s.p->mlx_win, 2, 1L << 1, key_hook, &s.key_states);
+	mlx_hook(s.p->mlx_win, 17, 0, ft_exit, NULL);
 	mlx_loop_hook(s.p->mlx, paint_frame, &s);
 	mlx_loop(s.p->mlx);
 }

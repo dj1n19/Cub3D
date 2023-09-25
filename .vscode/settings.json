@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"render.C": "cpp"
+		"render.C": "cpp",
+		"cub3d.h": "c"
 	}
 }

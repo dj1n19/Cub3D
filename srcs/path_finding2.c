@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:00:16 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/16 15:41:44 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:30:33 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_map_corr	*ft_path_finding_map_update(t_map_verif *map, t_map_corr *chain)
 		else
 			chain = lstadd_back(chain, co);
 	}
-	free(co);
+	ft_malloc(0, co, FREE);
 	return (chain);
 }
 

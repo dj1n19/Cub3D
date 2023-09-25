@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:16:18 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/16 15:38:42 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:33:41 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	**ft_allocate_table(int fd, t_map *map_struct,
 	while (i != line_pos - 1)
 	{
 		line = get_next_line(fd);
-		free(line);
+		ft_malloc(0, line, FREE);
 		i++;
 	}
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:57:46 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/16 15:42:03 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:30:15 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_map_corr	*ft_path_finding_map_suppup(t_map_verif *map, t_map_corr *chain)
 	map->map_compl[map->y][map->x] = '1';
 	map->x = l->x;
 	map->y = l->y;
-	free(l->next);
+	ft_malloc(0, l->next, FREE);
 	l->next = NULL;
 	return (chain);
 }

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:49:47 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/17 23:53:02 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 14:34:36 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ static void	ft_put_file_table5(t_verif *verif, t_map *map_struct, int fd)
 	verif->line_pos++;
 	while (ft_strncmp(verif->line, "\n", 1) == 0)
 	{
-		free(verif->line);
+		ft_malloc(0, verif->line, FREE);
 		verif->line = get_next_line(fd);
 		verif->line_pos++;
 	}
 	while (verif->line != NULL)
 	{
-		free(verif->line);
+		ft_malloc(0, verif->line, FREE);
 		verif->map_pos++;
 		verif->line = get_next_line(fd);
 	}
-	free(verif->line);
+	ft_malloc(0, verif->line, FREE);
 	map_struct->map_lenght = verif->map_pos;
 }
 
