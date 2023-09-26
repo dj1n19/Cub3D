@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:35:12 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 22:11:21 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 23:18:04 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef enum e_action
 	FREE,
 	CLEAR,
 	MTEX,
-	CTEX
+	CTEX,
+	INIT
 }	t_action;
 
 typedef struct s_malloc_node
@@ -54,6 +55,7 @@ typedef struct s_texture_list
 	struct s_texture_node	*tail;
 	size_t					size;
 	void					*mlx_ptr;
+	void					*mlx_win;
 }	t_texture_list;
 
 /*

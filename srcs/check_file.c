@@ -3,42 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:16:18 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/26 16:28:28 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/09/26 23:10:30 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/map.h"
 #include "../includes/cub3d.h"
-
-int	ft_is_exit(char **map)
-{
-	int	i;
-	int	j;
-	int	exit;
-
-	i = 0;
-	exit = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'O')
-				exit++;
-			j++;
-		}
-		i++;
-	}
-	return (exit);
-}
-
 
 void	ft_verif_player_pos(char is_pos, t_map *map)
 {
-	//printf("CHaNGeMENt aNgLe\n");
 	if (is_pos == 'N')
 		map->start_angle = M_PI;
 	if (is_pos == 'S')
@@ -49,8 +24,9 @@ void	ft_verif_player_pos(char is_pos, t_map *map)
 		map->start_angle = 3 * M_PI_2;
 }
 
-//fonction d'allocation du tableau de string de la map
-
+/*
+*	fonction d'allocation du tableau de string de la map
+*/
 static char	**ft_allocate_table(int fd, t_map *map_struct,
 	int line_pos, char **argv)
 {
@@ -80,8 +56,9 @@ static char	**ft_allocate_table(int fd, t_map *map_struct,
 	return (map_struct->map);
 }
 
-//fonction pour lancer la vérification de la map
-
+/*
+*	fonction pour lancer la vérification de la map
+*/
 t_map	check_map(int fd, char **argv)
 {
 	t_map	map;

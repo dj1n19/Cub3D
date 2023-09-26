@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 06:46:57 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/26 16:28:52 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/09/26 23:11:07 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,7 @@ static void	ft_verif_forbidden_char(t_map *map)
 			ft_verif_player_pos(map->map[i][j], map);
 			if (map->map[i][j] != '1' && map->map[i][j] != '0' && map->map[i][j]
 			!= ' ' && map->map[i][j] != 'W' && map->map[i][j]
-			!= 'E' && map->map[i][j] != 'S' && map->map[i][j] != 'N'
-			&& map->map[i][j] != 'O')
+			!= 'E' && map->map[i][j] != 'S' && map->map[i][j] != 'N')
 				ft_error(CHAR_ERROR);
 			j++;
 		}
@@ -112,9 +111,9 @@ static void	ft_verif_forbidden_char(t_map *map)
 	}
 }
 
-
-//fonction pour vérifier que les carracteres présents sur la map soient les bons
-
+/*
+*	fonction pour vérifier que les carracteres présents sur la map soient les bons
+*/
 void	ft_verif_char_map(t_map *map)
 {
 	int	i;
@@ -127,8 +126,6 @@ void	ft_verif_char_map(t_map *map)
 	ft_verif_forbidden_char(map);
 	if (ft_is_player(map->map, map) != 1)
 		ft_error(BAD_PLAYER_ERROR);
-	if (ft_is_exit(map->map) > 1)
-		ft_error(BAD_EXIT_ERROR);
 	if (!ft_verif_map_shape(map))
 		ft_error(MAP_LAYOUT_ERROR);
 	space_to_one(map);

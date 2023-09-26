@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:33:41 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 22:10:09 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 23:23:11 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_mlx_texture(void *mlx_ptr, void *img, int action)
 
 	if (!list)
 		list = create_texture_list(mlx_ptr);
+	if (action == INIT)
+		list->mlx_win = img;
 	if (action == MTEX)
 		ft_add_img(list, img);
 	else if (action == CTEX)

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:21:50 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 22:05:37 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 23:17:27 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	delete_texture_list(t_texture_list *list)
 		return ;
 	while (list->size)
 		pop_tex(list);
+	mlx_destroy_window(list->mlx_ptr, list->mlx_win);
 }
 
 void	pop_tex(t_texture_list *list)

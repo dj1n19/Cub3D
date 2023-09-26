@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/26 17:11:18 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/09/26 23:11:31 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # define ARGUMENT_ERROR "Invalid argument"
 # define FILE_DESRIPTOR_ERROR "Bad file descriptor"
 # define BAD_PLAYER_ERROR "Not enough or too many players present on the map"
-# define BAD_EXIT_ERROR "too many exit present on the map"
 # define BAD_FILE "Bad file arrangement"
 # define TEX_LOAD "Failed to load texture"
 
@@ -50,6 +49,7 @@
 # define COLLISION_MARGIN 0.00100f
 
 # define PI 3.141592
+# define M_PI_2 PI / 2
 # define CASTED_RAYS 1400
 # define STEP_ANGLE FOV / CASTED_RAYS
 # define SCALE (SCREEN_WIDTH / 2) / CASTED_RAYS
@@ -77,30 +77,21 @@
 
 typedef enum e_directions
 {
-	SOUTH = 1,
-	NORTH = 13,
-	EAST = 2,
-	WEST = 0,
-	ESC = 53,
-	LEFT = 123,
-	RIGHT = 124,
-	// NORTH = 119,
-	// WEST = 97,
-	// SOUTH = 115,
-	// EAST = 100,
-	// ESC = 65307,
+	// SOUTH = 1,
+	// NORTH = 13,
+	// EAST = 2,
+	// WEST = 0,
+	// ESC = 53,
+	// LEFT = 123,
+	// RIGHT = 124,
+	NORTH = 119,
+	WEST = 97,
+	SOUTH = 115,
+	EAST = 100,
+	ESC = 65307,
+	LEFT = 65361,
+	RIGHT = 65363,
 }	t_directions;
-
-/*
-*	structure de gestion de ben
-*/
-
-typedef struct s_sprite
-{
-	float	x;
-	float	y;
-	float	distance;
-}	t_sprite;
 
 /*
 *	structure de gestion des event clavier
@@ -239,49 +230,6 @@ typedef struct s_s
 }	t_s;
 
 /*
-*	structure de gestion du path_finding
-*/
-
-typedef struct s_map_verif
-{
-	int		error;
-	char	*map_path;
-	int		map_x;
-	int		map_y;
-	int		x;
-	int		y;
-	int		out_x;
-	int		out_y;
-	int		dist;
-	int		map_mapleng;
-	int		lower_cost;
-	int		**map_dist;
-	char	**map_compl;
-}	t_map_verif;
-
-/*
-*	liste chainée du path_finding
-*/
-
-typedef struct s_map_corr
-{
-	int					x;
-	int					y;
-	struct s_map_corr	*next;
-}	t_map_corr;
-
-/*
-*	structure de return du path_finding
-*/
-
-typedef struct s_path_return
-{
-	int	moves;
-	int	*x;
-	int	*y;
-}	t_path_return;
-
-/*
 *	structure de gestion des vecteurs du raycasting
 */
 
@@ -309,37 +257,6 @@ typedef struct s_ray_wall{
 	char	wall_type;
 	char	wall_face;
 }	t_ray_wall;
-
-typedef struct s_minimap
-{
-	t_map		*map;
-	t_data		*img;
-	t_mlx		*p;
-	t_player	*player;
-	float		x_tile_size;
-	float		y_tile_size;
-}	t_minimap;
-
-typedef struct s_minimap_data
-{
-	int	x;
-	int	y;
-	int	size_x;
-	int	size_y;
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
-	int	thick;
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
-	int	coordinate_x;
-	int	coordinate_y;
-}	t_minimap_data;
 
 /*
 *	structure de gestion de la fonction render
@@ -417,7 +334,6 @@ long long		get_current_microseconds(void);
 
 t_map			check_map(int fd, char **argv);
 void			ft_verif_player_pos(char is_pos, t_map *map);
-int				ft_is_exit(char **map);
 
 /*
 *	Display.c
@@ -430,30 +346,6 @@ void			display_window(t_map *map);
 */
 
 void			space_to_one(t_map *map);
-
-/*
-*	Fonctions destinées au bon fonctionement du path_finding
-*/
-
-char			**copy_strings(char **src, int num_strings);
-t_path_return	*list_to_arrays(t_map_corr *head);
-t_path_return	*get_path_finding_input(char **map_path, int rows, int cols);
-
-void			ft_path_red2(t_map_verif *map, t_map_corr *chain,
-					t_map_corr *co);
-void			ft_path_red(t_map_verif *map, t_map_corr *chain,
-					t_map_corr *co);
-int				ft_path_finding_map_search_neighbour(t_map_verif *map);
-t_map_corr		*ft_path_finding_map_suppup(t_map_verif *map,
-					t_map_corr *chain);
-void			ft_path_finding_map_locate(t_map_verif *map, char c);
-void			ft_path_finding_map_put_tab(t_map_verif *map);
-void			ft_path_finding_map_manathan(t_map_verif *map);
-t_map_corr		*lstadd_back(t_map_corr *chain, t_map_corr *co);
-t_map_corr		*get_last(t_map_corr *chain);
-t_path_return	*ft_path_finding(t_map_verif *map, char **map_path);
-size_t			ft_strlen_back(const char *s);
-void			printList(t_map_corr *head);
 
 /*
 *	display.c
@@ -492,42 +384,12 @@ void			render_init(t_render *r, t_camera *camera, int i);
 void			render_hit(char **map, t_render *r);
 
 /*
-*	draw_minimap.c
-*/
-void			draw_map_2d(t_map *map, t_data *img,
-					t_mlx *p, t_player *player);
-void			draw_square_minimap(t_data *img, t_mlx *p,
-					t_minimap_data *md);
-
-/*
-*	draw_minimap_pathfinding.c
-*/
-void			draw_pathfinding(t_data *img, t_mlx *p,
-					t_map *map, t_minimap *mm);
-
-/*
-*	draw_minimap_circle.c
-*/
-void			draw_circle(t_minimap *mm, int x0, int y0, int radius);
-void			draw_map_circle(t_data *img);
-
-/*
-*	draw_minimap_utils.c
-*/
-int				point_in_circle(double x, double y, double r);
-void			set_color(t_minimap *mm, int x, int y);
-void			update_position_pathfinding(t_map *map,
-					t_mlx *p, t_minimap *mm);
-void			draw_line_minimap(t_data *img, t_mlx *p, t_minimap_data md);
-
-/*
 *	player_straf.c
 */
-
-void	update_player_movement_right(t_player *p, t_key_states *ks,
-	t_map *m);
-	void	update_player_movement_left(t_player *p, t_key_states *ks,
-	t_map *m);
+void			update_player_movement_right(t_player *p, t_key_states *ks,
+					t_map *m);
+void			update_player_movement_left(t_player *p, t_key_states *ks,
+					t_map *m);
 
 /*
 *	main.c

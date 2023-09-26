@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 16:29:39 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/26 17:06:14 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/09/26 23:28:48 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	paint_frame(t_s *s)
 	s->player->delta_y = sin(s->player->player_angle) * 5;
 	display_ceiling_floor(*s->img, s->map);
 	cast_rays(s);
-	draw_map_2d(s->map, s->img, s->p, s->player);
 	mlx_put_image_to_window(s->p->mlx, s->p->mlx_win, s->img->img, 0, 0);
 	return (0);
 }
@@ -62,7 +61,9 @@ void	display_window(t_map *map)
 	s.p->mlx = mlx_init();
 	s.p->mlx_win = mlx_new_window(s.p->mlx, SCREEN_WIDTH,
 			SCREEN_HEIGHT, TITLE_SCREEN);
+	ft_mlx_texture(s.p->mlx, s.p->mlx_win, INIT);
 	s.img->img = mlx_new_image(s.p->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	ft_mlx_texture(s.p->mlx, s.img->img, MTEX);
 	s.img->addr = mlx_get_data_addr(s.img->img, &s.img->bits_per_pixel,
 			&s.img->line_length, &s.img->endian);
 	s.start_time = get_current_microseconds();
