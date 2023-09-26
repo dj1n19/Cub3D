@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:42:21 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/18 15:49:06 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 22:04:00 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ t_xpm	textures_init(t_s *s, char *path)
 
 	sprite.img = mlx_xpm_file_to_image(s->p->mlx, path,
 			&sprite.width, &sprite.height);
+	if (!sprite.img)
+		ft_error(TEX_LOAD);
+	ft_mlx_texture(s->p->mlx, sprite.img, MTEX);
 	sprite.addr = mlx_get_data_addr(sprite.img,
 			&sprite.bits_per_pixel, &sprite.line_length, &sprite.endian);
 	return (sprite);

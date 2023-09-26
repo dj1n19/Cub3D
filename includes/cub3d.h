@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 14:50:02 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 22:02:32 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define FILE_DESRIPTOR_ERROR "Bad file descriptor"
 # define BAD_PLAYER_ERROR "Not enough or too many players present on the map"
 # define BAD_FILE "Bad file arrangement"
+# define TEX_LOAD "Failed to load texture"
 
 /*
 *	Macros de gestion des visuels

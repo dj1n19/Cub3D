@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 16:29:39 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 14:23:19 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 21:01:33 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	paint_frame(t_s *s)
 	display_ceiling_floor(*s->img, s->map);
 	cast_rays(s);
 	draw_map_2d(s->map, s->img, s->p, s->player);
-	mlx_put_image_to_window(s->p->mlx, s->p->mlx_win, s->xpm[4].img, 150, 150);
 	mlx_put_image_to_window(s->p->mlx, s->p->mlx_win, s->img->img, 0, 0);
 	return (0);
 }

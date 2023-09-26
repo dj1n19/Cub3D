@@ -54,6 +54,7 @@ libft:
 	make -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/libft.h $(INCLUDES_DIR)
 	cp $(LIBFT_DIR)/get_next_line.h $(INCLUDES_DIR)
+	cp $(LIBFT_DIR)/ft_malloc.h $(INCLUDES_DIR)
 	cp $(LIBFT_DIR)/libft.a $(LIB_DIR)
 
 mlx:

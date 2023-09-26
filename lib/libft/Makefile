@@ -52,7 +52,9 @@ SRCS = 	ft_atoi.c \
 		ft_dquote.c \
 		ft_malloc.c \
 		malloc_list.c \
-		ft_realloc.c
+		ft_realloc.c \
+		ft_mlx_texture.c \
+		texture_list.c
 
 BONUS = ft_lstadd_back.c \
 		ft_lstadd_front.c \

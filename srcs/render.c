@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:47:23 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/18 15:57:27 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/25 20:58:38 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	calc_wall_dist(char **map, t_render *r, t_camera *camera)
 	r->wall_height = (int)((float)SCREEN_HEIGHT
 			/ get_corrected_distance(r->ray.distance,
 				r->ray_angle - camera->dir.x));
-	r->half_wall_Height = r->wall_height / 2;
-	r->draw_start = -r->half_wall_Height + r->half_screen_height;
-	r->draw_end = r->half_wall_Height + r->half_screen_height;
+	r->half_wall_height = r->wall_height / 2;
+	r->draw_start = -r->half_wall_height + r->half_screen_height;
+	r->draw_end = r->half_wall_height + r->half_screen_height;
 	r->line_height = r->draw_end - r->draw_start;
 	r->wall_x;
 	if (r->ray.wall_face == 'N' || r->ray.wall_face == 'S')
