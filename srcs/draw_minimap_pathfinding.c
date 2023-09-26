@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap_pathfinding.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:03:47 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 14:28:50 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 15:31:52 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	draw_big_line(t_data *img, t_mlx *p, t_minimap_data *md)
 
 static void	draw_current_position(t_minimap *mm, t_path_return *co)
 {
-	long			coordinate;
 	t_minimap_data	md;
 
 	md.coordinate_y = (co->x[0] - mm->y_tile_size)

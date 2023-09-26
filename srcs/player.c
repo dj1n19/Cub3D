@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:35:44 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/16 15:42:11 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 17:06:23 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 static void	update_player_movement_down(t_player *p, t_key_states *ks,
-	t_map *m, double delta_time)
+	t_map *m)
 {
 	if (ks->south == true)
 	{
@@ -37,7 +37,7 @@ static void	update_player_movement_down(t_player *p, t_key_states *ks,
 }
 
 static void	update_player_movement_up(t_player *p, t_key_states *ks,
-	t_map *m, double delta_time)
+	t_map *m)
 {
 	if (ks->north == true)
 	{
@@ -63,7 +63,7 @@ static void	update_player_movement_up(t_player *p, t_key_states *ks,
 static void	update_player_movement_left_right(t_player *p,
 	t_key_states *ks, double delta_time)
 {
-	if (ks->east == true)
+	if (ks->left == true)
 	{
 		p->player_angle -= PI / 60 * delta_time * 1.0;
 		if (p->player_angle < 0)
@@ -73,7 +73,7 @@ static void	update_player_movement_left_right(t_player *p,
 		p->delta_x = (cos(p->player_angle) * 2);
 		p->delta_y = (sin(p->player_angle) * 2);
 	}
-	if (ks->west == true)
+	if (ks->right == true)
 	{
 		p->player_angle += PI / 60 * delta_time * 1.0;
 		if (p->player_angle > 2 * PI)
@@ -88,7 +88,9 @@ static void	update_player_movement_left_right(t_player *p,
 void	update_player_movement(t_player *p, t_key_states *ks,
 	t_map *m, double delta_time)
 {
+	update_player_movement_left(p, ks, m);
+	update_player_movement_right(p, ks, m);
 	update_player_movement_left_right(p, ks, delta_time);
-	update_player_movement_up(p, ks, m, delta_time);
-	update_player_movement_down(p, ks, m, delta_time);
+	update_player_movement_up(p, ks, m);
+	update_player_movement_down(p, ks, m);
 }

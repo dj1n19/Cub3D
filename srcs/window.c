@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 16:29:39 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 21:01:33 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 17:06:14 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ static void	init_struct(t_s *s, t_map *map)
 	s->key_states.west = false;
 	s->key_states.north = false;
 	s->key_states.south = false;
+	s->key_states.left = false;
+	s->key_states.right = false;
 	s->player->x = map->def_x;
 	s->player->y = map->def_y;
-	s->player->player_angle = M_PI_2;
+	s->player->player_angle = map->start_angle;
 	if (s->map->map_len > s->map->map_lenght)
 	{
 		s->map->map_max = s->map->map_len;

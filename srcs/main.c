@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 06:46:58 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/25 22:12:46 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 15:30:06 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_exit(void *data)
 {
+	(void)data;
 	ft_malloc(0, NULL, CLEAR);
 	ft_mlx_texture(NULL, NULL, CTEX);
 	exit(EXIT_SUCCESS);

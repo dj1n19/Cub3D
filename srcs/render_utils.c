@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:53:34 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/18 15:54:01 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 15:27:13 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void	render_init(t_render *r, t_camera *camera, int i)
 	r->eye_y = cos(r->ray_angle);
 	r->delta_dist_x = fabs(1 / r->eye_x);
 	r->delta_dist_y = fabs(1 / r->eye_y);
-	r->side_dist_x;
-	r->side_dist_y;
-	r->step_x;
-	r->step_y;
 }
 
 void	render_hit(char **map, t_render *r)

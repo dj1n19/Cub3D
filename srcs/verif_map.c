@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 06:46:57 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/17 23:33:39 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 16:28:52 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static void	ft_verif_forbidden_char(t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
+			ft_verif_player_pos(map->map[i][j], map);
 			if (map->map[i][j] != '1' && map->map[i][j] != '0' && map->map[i][j]
 			!= ' ' && map->map[i][j] != 'W' && map->map[i][j]
 			!= 'E' && map->map[i][j] != 'S' && map->map[i][j] != 'N'
@@ -110,6 +111,7 @@ static void	ft_verif_forbidden_char(t_map *map)
 		i++;
 	}
 }
+
 
 //fonction pour vérifier que les carracteres présents sur la map soient les bons
 
@@ -125,6 +127,8 @@ void	ft_verif_char_map(t_map *map)
 	ft_verif_forbidden_char(map);
 	if (ft_is_player(map->map, map) != 1)
 		ft_error(BAD_PLAYER_ERROR);
+	if (ft_is_exit(map->map) > 1)
+		ft_error(BAD_EXIT_ERROR);
 	if (!ft_verif_map_shape(map))
 		ft_error(MAP_LAYOUT_ERROR);
 	space_to_one(map);

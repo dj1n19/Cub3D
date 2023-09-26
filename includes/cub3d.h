@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 22:02:32 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 17:11:18 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define ARGUMENT_ERROR "Invalid argument"
 # define FILE_DESRIPTOR_ERROR "Bad file descriptor"
 # define BAD_PLAYER_ERROR "Not enough or too many players present on the map"
+# define BAD_EXIT_ERROR "too many exit present on the map"
 # define BAD_FILE "Bad file arrangement"
 # define TEX_LOAD "Failed to load texture"
 
@@ -46,7 +47,7 @@
 *	Macros de gestion mathematique
 */
 
-# define COLLISION_MARGIN 0.00000f
+# define COLLISION_MARGIN 0.00100f
 
 # define PI 3.141592
 # define CASTED_RAYS 1400
@@ -76,16 +77,18 @@
 
 typedef enum e_directions
 {
-	// SOUTH = 1,
-	// NORTH = 13,
-	// EAST = 2,
-	// WEST = 0,
-	// ESC = 53,
-	NORTH = 119,
-	WEST = 97,
-	SOUTH = 115,
-	EAST = 100,
-	ESC = 65307,
+	SOUTH = 1,
+	NORTH = 13,
+	EAST = 2,
+	WEST = 0,
+	ESC = 53,
+	LEFT = 123,
+	RIGHT = 124,
+	// NORTH = 119,
+	// WEST = 97,
+	// SOUTH = 115,
+	// EAST = 100,
+	// ESC = 65307,
 }	t_directions;
 
 /*
@@ -105,10 +108,12 @@ typedef struct s_sprite
 
 typedef struct s_key_states
 {
-	bool	east;
-	bool	west;
+	bool	left;
+	bool	right;
 	bool	north;
 	bool	south;
+	bool	east;
+	bool	west;
 }	t_key_states;
 
 /*
@@ -194,6 +199,7 @@ typedef struct s_map
 	int		map_lenght;
 	int		map_len;
 	int		map_max;
+	float	start_angle;
 	char	*map_line;
 	char	**map;
 }	t_map;
@@ -410,6 +416,8 @@ long long		get_current_microseconds(void);
 */
 
 t_map			check_map(int fd, char **argv);
+void			ft_verif_player_pos(char is_pos, t_map *map);
+int				ft_is_exit(char **map);
 
 /*
 *	Display.c
@@ -511,6 +519,15 @@ void			set_color(t_minimap *mm, int x, int y);
 void			update_position_pathfinding(t_map *map,
 					t_mlx *p, t_minimap *mm);
 void			draw_line_minimap(t_data *img, t_mlx *p, t_minimap_data md);
+
+/*
+*	player_straf.c
+*/
+
+void	update_player_movement_right(t_player *p, t_key_states *ks,
+	t_map *m);
+	void	update_player_movement_left(t_player *p, t_key_states *ks,
+	t_map *m);
 
 /*
 *	main.c

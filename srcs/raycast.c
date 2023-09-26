@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:42:21 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 22:04:00 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 15:37:38 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ unsigned int	get_wall_face_color(t_s *s, char wall_face, int x, int y)
 	t_xpm	*texture;
 	int		texture_idx;
 
-	texture_idx - -1;
+	texture_idx = -1;
 	if (wall_face == 'N')
 		texture_idx = 0;
 	else if (wall_face == 'S')

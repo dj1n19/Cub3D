@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:47:23 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/25 20:58:38 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/26 15:27:08 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	calc_wall_dist(char **map, t_render *r, t_camera *camera)
 	r->draw_start = -r->half_wall_height + r->half_screen_height;
 	r->draw_end = r->half_wall_height + r->half_screen_height;
 	r->line_height = r->draw_end - r->draw_start;
-	r->wall_x;
 	if (r->ray.wall_face == 'N' || r->ray.wall_face == 'S')
 		r->wall_x = camera->pos.x + r->perp_wall_dist * r->eye_x;
 	else
