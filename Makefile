@@ -1,4 +1,4 @@
-CFLAGS = 
+CFLAGS = -finline-functions -fvectorize -fslp-vectorize -ffast-math -falign-functions -funroll-loops -fstrict-aliasing -fomit-frame-pointer -flto -Ofast -O1 -O2 -Os -O3 -Wall -Wextra -Werror 
 CC = gcc
 
 SRC_FILES =	main.c \
@@ -75,7 +75,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR_BONUS)/%.c
 all: $(NAME)
 
 debug: fclean libft mlx $(OBJS)
-	${CC} ${CFLAGS} -fsanitize=address -g -o ${NAME} -I${INCLUDES_DIR} ${OBJS} -I${LIB_DIR} -lft -lmlx -lXext -lm -lz -lX11
+	${CC} ${CFLAGS} -fsanitize=address -g -o ${NAME} -I${INCLUDES_DIR} ${OBJS} -I${LIB_DIR} -lft -lmlx -framework OpenGL -framework Appkit -lmlx
 
 libft:
 	make -C $(LIBFT_DIR)
@@ -97,10 +97,10 @@ mlx:
 	cp $(MLX_DIR)/libmlx.a $(LIB_DIR)
 
 $(NAME): libft mlx $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) -I$(INCLUDES_DIR) $(OBJS) -L$(LIB_DIR) -lft -lmlx -lXext -lm -lz -lX11
+	$(CC) $(CFLAGS) -o $(NAME) -I$(INCLUDES_DIR) $(OBJS) -L$(LIB_DIR) -lft -lmlx -framework OpenGL -framework Appkit -lmlx
 
 bonus: libft_bonus mlx $(OBJS_BONUS)
-	$(CC) $(CFLAGS) -o $(NAME) -I$(INCLUDES_DIR_BONUS) $(OBJS_BONUS) -L$(LIB_DIR) -lft -lmlx -lXext -lm -lz -lX11
+	$(CC) $(CFLAGS) -o $(NAME) -I$(INCLUDES_DIR_BONUS) $(OBJS_BONUS) -L$(LIB_DIR) -lft -lmlx -framework OpenGL -framework Appkit -lmlx
 
 clean:
 	rm -rf $(OBJS_DIR)

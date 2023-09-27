@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/26 23:56:14 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/27 14:36:33 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,13 @@
 
 typedef enum e_directions
 {
-	// SOUTH = 1,
-	// NORTH = 13,
-	// EAST = 2,
-	// WEST = 0,
-	// ESC = 53,
-	// LEFT = 123,
-	// RIGHT = 124,
-	NORTH = 119,
-	WEST = 97,
-	SOUTH = 115,
-	EAST = 100,
-	ESC = 65307,
-	LEFT = 65361,
-	RIGHT = 65363,
+	SOUTH = 1,
+	NORTH = 13,
+	EAST = 2,
+	WEST = 0,
+	ESC = 53,
+	LEFT = 123,
+	RIGHT = 124,
 }	t_directions;
 
 /*
