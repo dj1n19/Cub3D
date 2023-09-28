@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:47:23 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/26 15:27:08 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:37:03 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	eye_position(t_camera *camera, t_render *r)
 	{
 		r->step_y = 1;
 		r->side_dist_y = (r->map_y + 1.0 - camera->pos.y) * r->delta_dist_y;
-	}	
+	}
 }
 
 void	render(t_camera *camera, char **map, t_s *s)
