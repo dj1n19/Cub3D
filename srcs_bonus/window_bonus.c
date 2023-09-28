@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 16:29:39 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/26 23:50:55 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/28 13:28:05 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	display_window(t_map *map)
 	s.map = map;
 	ft_allocate_struct(&s);
 	init_struct(&s, map);
-	printf("x : %f, y : %f\n", s.player->x, s.player->y);
 	s.p->mlx = mlx_init();
 	s.p->mlx_win = mlx_new_window(s.p->mlx, SCREEN_WIDTH,
 			SCREEN_HEIGHT, TITLE_SCREEN);
