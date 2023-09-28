@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 21:15:42 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/17 23:52:58 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/28 12:07:14 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	display_ceiling_floor(t_data img, t_map *map)
 		j = 0;
 		while (j < SCREEN_WIDTH)
 		{
-			my_mlx_pixel_put(&img, j, i, map->ceiling_color);
+			my_mlx_pixel_put(&img, j, i, map->floor_color);
 			j++;
 		}
 		i++;
@@ -61,7 +61,7 @@ void	display_ceiling_floor(t_data img, t_map *map)
 		j = 0;
 		while (j < SCREEN_WIDTH)
 		{
-			my_mlx_pixel_put(&img, j, i, map->floor_color);
+			my_mlx_pixel_put(&img, j, i, map->ceiling_color);
 			j++;
 		}
 		i++;

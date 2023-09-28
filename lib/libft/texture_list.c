@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:21:50 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/26 23:17:27 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/09/28 11:40:09 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	delete_texture_list(t_texture_list *list)
 		return ;
 	while (list->size)
 		pop_tex(list);
-	mlx_destroy_window(list->mlx_ptr, list->mlx_win);
+	if (list->mlx_win)
+		mlx_destroy_window(list->mlx_ptr, list->mlx_win);
 }
 
 void	pop_tex(t_texture_list *list)
@@ -51,6 +52,7 @@ t_texture_list	*create_texture_list(void *mlx_ptr)
 	list.tail = NULL;
 	list.size = 0;
 	list.mlx_ptr = mlx_ptr;
+	list.mlx_win = NULL;
 	return (&list);
 }
 

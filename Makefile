@@ -75,7 +75,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR_BONUS)/%.c
 all: $(NAME)
 
 debug: fclean libft mlx $(OBJS)
-	${CC} ${CFLAGS} -fsanitize=address -g -o ${NAME} -I${INCLUDES_DIR} ${OBJS} -I${LIB_DIR} -lft -lmlx -framework OpenGL -framework Appkit -lmlx
+	$(CC) $(CFLAGS) -fsanitize=address -g -o $(NAME) -I$(INCLUDES_DIR) $(OBJS) -L$(LIB_DIR) -lft -lmlx -framework OpenGL -framework Appkit -lmlx
 
 libft:
 	make -C $(LIBFT_DIR)
@@ -109,6 +109,8 @@ clean:
 
 fclean:	clean
 	rm -f $(NAME)
+	rm -f $(LIB_DIR)/libft.a
+	rm -f $(LIB_DIR)/libmlx.a
 	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
