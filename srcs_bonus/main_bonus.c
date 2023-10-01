@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 06:46:58 by mebourge          #+#    #+#             */
-/*   Updated: 2023/10/01 13:28:29 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/10/01 15:00:55 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_error(ARGUMENT_ERROR);
 	ext = ft_strrchr(argv[1], '.');
-	if (ft_strnstr(ext, ".cub", 5) == NULL || *(ext + 4) != 0)
+	if (!ext || ft_strnstr(ext, ".cub", 5) == NULL || *(ext + 4) != 0)
 		ft_error("Bad file format");
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 1)
