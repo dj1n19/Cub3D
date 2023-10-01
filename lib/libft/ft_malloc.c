@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:15:23 by bgenie            #+#    #+#             */
-/*   Updated: 2023/05/28 18:26:59 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/10/01 14:26:33 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ static void	*ft_alloc(t_malloc *list, size_t size)
 	ptr = malloc(size);
 	if (!ptr)
 	{
+		ft_mlx_texture(NULL, NULL, CTEX);
 		delete_malloc_list(list);
 		exit(EXIT_FAILURE);
 	}
 	node = create_malloc_node(ptr, size);
 	if (!node)
 	{
+		ft_mlx_texture(NULL, NULL, CTEX);
 		delete_malloc_list(list);
 		write(2, EALLOC, 21);
 		exit(EXIT_FAILURE);
@@ -81,6 +83,7 @@ static void	*ralloc(t_malloc *list, void *ptr, size_t size)
 	node = create_malloc_node(ptr, size);
 	if (!node)
 	{
+		ft_mlx_texture(NULL, NULL, CTEX);
 		delete_malloc_list(list);
 		write(2, EALLOC, 21);
 		exit(EXIT_FAILURE);
@@ -88,6 +91,7 @@ static void	*ralloc(t_malloc *list, void *ptr, size_t size)
 	node->allocation = ft_realloc(ptr, size);
 	if (!node->allocation)
 	{
+		ft_mlx_texture(NULL, NULL, CTEX);
 		delete_malloc_list(list);
 		write(2, EALLOC, 21);
 		exit(EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:33:41 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/26 23:23:11 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/10/01 14:27:48 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	ft_add_img(t_texture_list *list, void *img)
 	node = create_texture_node(img);
 	if (!node)
 	{
+		ft_malloc(0, NULL, CLEAR);
 		delete_texture_list(list);
 		write(2, EALLOC, 21);
 		exit(EXIT_FAILURE);
