@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:16:18 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/26 23:48:44 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/10/01 13:41:57 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/cub3d_bonus.h"
+
+void	ft_verif_map_size(t_map *map)
+{
+	if (map->map_len >= 200 || map->map_lenght >= 200)
+		ft_error("Bad map_size > 200");
+}
 
 int	ft_is_exit(char **map)
 {

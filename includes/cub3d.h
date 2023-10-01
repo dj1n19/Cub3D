@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/09/27 14:36:47 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/10/01 13:26:16 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 */
 
 # define SCREEN_HEIGHT 700
-# define SCREEN_HEIGHT_1 SCREEN_HEIGHT / 2
+# define SCREEN_HEIGHT_1 350
 # define SCREEN_WIDTH 1200
 # define TITLE_SCREEN "Cub3D"
 # define MINIMAP_X 170
@@ -49,10 +49,9 @@
 # define COLLISION_MARGIN 0.00100f
 
 # define PI 3.141592
-# define M_PI_2 PI / 2
 # define CASTED_RAYS 1400
-# define STEP_ANGLE FOV / CASTED_RAYS
-# define SCALE (SCREEN_WIDTH / 2) / CASTED_RAYS
+# define STEP_ANGLE 0.00080598511
+# define SCALE 0.42857142857
 
 # define SPRITE_WIDTH 64
 # define SPRITE_HEIGHT 64
@@ -327,6 +326,7 @@ long long		get_current_microseconds(void);
 
 t_map			check_map(int fd, char **argv);
 void			ft_verif_player_pos(char is_pos, t_map *map);
+void			ft_verif_map_size(t_map *map);
 
 /*
 *	Display.c

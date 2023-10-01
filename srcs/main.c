@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 06:46:58 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/28 15:13:15 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/10/01 13:26:48 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	main(int argc, char **argv)
 	if (fd < 1)
 		ft_error(FILE_DESRIPTOR_ERROR);
 	map = check_map(fd, argv);
+	ft_verif_map_size(&map);
 	display_window(&map);
 }
