@@ -3,91 +3,85 @@
 /*                                                        :::      ::::::::   */
 /*   verif_shape.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:04:13 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/26 22:48:46 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/10/15 15:59:35 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-//Le fichier entier est une découpe d'une fonction destinée 
-//a vérifier que la map soit bien entourée de mur
-
-static int	ft_verif_map_shape3(t_map *map, int i, int j)
+static int	ft_verif_neighbours(t_map *map, int i, int j)
 {
-	if (map->map[i][j] != '1' && map->map[i][j] != ' ')
+	if (j != 0 && map->map[i][j - 1] != '1' && map->map[i][j - 1] != ' ')
 		return (0);
-	if (map->map[i][j] == ' ' && i != map->map_lenght - 1
-		&& map->map[i + 1][j] != '1' && map->map[i + 1][j] != ' ')
+	if (map->map[i][j + 1] != '1' && map->map[i][j + 1] != ' ')
+		return (0);
+	if (i != map->map_lenght - 1 && map->map[i + 1][j] != '1'
+		&& map->map[i + 1][j] != ' ')
+		return (0);
+	if (i != 0 && map->map[i - 1][j] != '1' && map->map[i - 1][j] != ' ')
 		return (0);
 	return (1);
 }
 
-static int	ft_verif_map_shape2(t_map *map, int i, int j)
+static int	ft_verif_space(t_map *map)
 {
-	if (map->map[i][j] == ' ')
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->map_lenght)
 	{
-		if (j != 0 && map->map[i][j - 1] != '1' && map->map[i][j - 1] != ' ')
-			return (0);
-		if (map->map[i][j + 1] != '1' && map->map[i][j + 1] != ' ')
-			return (0);
-		if (i != map->map_lenght - 1 && map->map[i + 1][j] != '1'
-				&& map->map[i + 1][j] != ' ')
-			return (0);
-		if (i != 0 && map->map[i - 1][j] != '1' && map->map[i - 1][j] != ' ')
-			return (0);
-	}
-	if (map->map[i][j] == '0')
-	{
-		if (ft_strlen(map->map[i - 1]) < ft_strlen(map->map[i]) && j
-			> (int)ft_strlen(map->map[i - 1]) - 1)
-			return (0);
-		if (ft_strlen(map->map[i + 1]) < ft_strlen(map->map[i]) && j
-			> (int)ft_strlen(map->map[i + 1]) - 1)
-			return (0);
+		j = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] == ' ')
+			{
+				if (!ft_verif_neighbours(map, i, j))
+					return (0);
+			}
+			j++;
+		}
+		i++;
 	}
 	return (1);
 }
 
-static int	ft_verif_map_shape4(t_map *map, t_verif *verif)
+static int	ft_verif_map_border(t_map *map)
 {
-	if (map->map[verif->i][ft_strlen(map->map[verif->i]) - 1] != '1'
-		&& map->map[verif->i][ft_strlen(map->map[verif->i]) - 1] != ' ')
-		return (0);
-	while (map->map[verif->i][verif->j])
+	int	i;
+
+	i = -1;
+	while (map->map[0][++i])
 	{
-		if (ft_verif_map_shape2(map, verif->i, verif->j) == 0)
+		if (map->map[0][i] != '1' && map->map[0][i] != ' ')
 			return (0);
-		verif->j++;
+	}
+	i = 0;
+	while (++i < map->map_lenght - 1)
+	{
+		if ((map->map[i][0] != '1' && map->map[i][0] != ' ')
+			|| (map->map[i][ft_strlen(map->map[i]) - 1] != '1'
+			&& map->map[i][ft_strlen(map->map[i]) - 1] != ' '))
+			return (0);
+	}
+	i = -1;
+	while (map->map[map->map_lenght - 1][++i])
+	{
+		if (map->map[map->map_lenght - 1][i] != '1'
+			&& map->map[map->map_lenght - 1][i] != ' ')
+			return (0);
 	}
 	return (1);
 }
 
 int	ft_verif_map_shape(t_map *map)
 {
-	t_verif	verif;
-
-	verif.i = 0;
-	while (verif.i != map->map_lenght)
-	{
-		verif.j = 0;
-		if (verif.i == 0 || verif.i == map->map_lenght)
-		{
-			while (map->map[verif.i][verif.j])
-			{
-				if (ft_verif_map_shape3(map, verif.i, verif.j) == 0)
-					return (0);
-				verif.j++;
-			}
-		}
-		else
-		{
-			if (ft_verif_map_shape4(map, &verif) == 0)
-				return (0);
-		}
-		verif.i++;
-	}
+	if (!ft_verif_map_border(map))
+		return (0);
+	if (!ft_verif_space(map))
+		return (0);
 	return (1);
 }
