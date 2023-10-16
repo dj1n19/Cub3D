@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:49:47 by mebourge          #+#    #+#             */
-/*   Updated: 2023/10/16 15:22:32 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:27:11 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static void	ft_put_file_table3(t_verif *verif, t_map *map_struct)
 		}
 		free_tab(verif->tmp);
 		verif->instruct++;
-		printf("[%x]\n", map_struct->floor_color);
 	}
 }
 
