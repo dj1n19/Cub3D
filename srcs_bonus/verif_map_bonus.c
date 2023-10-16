@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 06:46:57 by merlinbourg       #+#    #+#             */
-/*   Updated: 2023/09/26 23:50:45 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/10/16 14:10:34 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static int	ft_is_player(char **map, t_map *s)
 			if (map[i][j] == 'W' || map[i][j] == 'E'
 			|| map[i][j] == 'S' || map[i][j] == 'N')
 			{
-				s->def_x = i * 20;
-				s->def_y = j * 20;
+				s->def_x = i * 20 + 10;
+				s->def_y = j * 20 + 10;
 				s->def_angle = map[i][j];
 				player++;
 			}
