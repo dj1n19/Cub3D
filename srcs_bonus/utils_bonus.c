@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 20:11:26 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/26 23:50:35 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/10/16 15:19:08 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,23 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x
 			* (data->bits_per_pixel / BITS_PER_BYTE));
 	*(unsigned int *)dst = color;
+}
+
+void	ft_check_color(t_verif *verif)
+{
+	int	i;
+
+	i = 0;
+	while (verif->tmp[verif->indic][i] == ' ')
+		i++;
+	if (!ft_isdigit(verif->tmp[verif->indic][i]))
+		ft_error(BAD_COLOR);
+	i++;
+	while (verif->tmp[verif->indic][i]
+		&& verif->tmp[verif->indic][i] != '\n')
+	{
+		if (!ft_isdigit(verif->tmp[verif->indic][i]))
+			ft_error(BAD_COLOR);
+		i++;
+	}
 }

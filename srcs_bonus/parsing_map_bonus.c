@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.s19.be>             +#+  +:+       +#+        */
+/*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:49:47 by mebourge          #+#    #+#             */
-/*   Updated: 2023/09/26 23:49:44 by bgenie           ###   ########.fr       */
+/*   Updated: 2023/10/16 15:22:59 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,32 @@ static void	ft_put_file_table5(t_verif *verif, t_map *map_struct, int fd)
 
 static void	ft_put_file_table4(t_verif *verif, t_map *map_struct)
 {
+	int	shift;
+
+	shift = 2;
 	if (ft_strncmp(verif->line, "C ", 2) == 0)
 	{
 		verif->indic = 0;
-		verif->tmp = ft_split(ft_strrchr(verif->line, ' ') + 1, ',');
+		verif->tmp = ft_split(ft_strchr(verif->line, ' ') + 1, ',');
 		while (verif->tmp[verif->indic] != NULL)
 		{
+			ft_check_color(verif);
 			map_struct->ceiling_color |= (ft_atoi(verif->tmp[verif->indic])
-					<< (verif->indic * 8));
+					<< (shift * 8));
 			verif->indic++;
+			shift--;
 		}
 		free_tab(verif->tmp);
 		verif->instruct++;
+		printf("[%x]\n", map_struct->ceiling_color);
 	}
 }
 
 static void	ft_put_file_table3(t_verif *verif, t_map *map_struct)
 {
+	int	shift;
+
+	shift = 2;
 	if (ft_strncmp(verif->line, "EA ", 3) == 0)
 	{
 		map_struct->east_texture = ft_substr(verif->line, 3,
@@ -66,12 +75,14 @@ static void	ft_put_file_table3(t_verif *verif, t_map *map_struct)
 	else if (ft_strncmp(verif->line, "F ", 2) == 0)
 	{
 		verif->indic = 0;
-		verif->tmp = ft_split(ft_strrchr(verif->line, ' ') + 1, ',');
+		verif->tmp = ft_split(ft_strchr(verif->line, ' ') + 1, ',');
 		while (verif->tmp[verif->indic] != NULL)
 		{
+			ft_check_color(verif);
 			map_struct->floor_color |= (ft_atoi(verif->tmp[verif->indic])
-					<< (verif->indic * 8));
+					<< (shift * 8));
 			verif->indic++;
+			shift--;
 		}
 		free_tab(verif->tmp);
 		verif->instruct++;

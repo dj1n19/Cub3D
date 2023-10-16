@@ -6,7 +6,7 @@
 /*   By: mebourge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:37:49 by bgenie            #+#    #+#             */
-/*   Updated: 2023/10/01 13:26:16 by mebourge         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:17:55 by mebourge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define BAD_PLAYER_ERROR "Not enough or too many players present on the map"
 # define BAD_FILE "Bad file arrangement"
 # define TEX_LOAD "Failed to load texture"
+# define BAD_COLOR "Bad color format"
 
 /*
 *	Macros de gestion des visuels
@@ -319,6 +320,7 @@ void			free_tab(char **tmp);
 int				is_wall(char **map, float y, float x);
 char			*concatenate_string_array(char **map, int len);
 long long		get_current_microseconds(void);
+void			ft_check_color(t_verif *verif);
 
 /*
 *	Check_file.c
